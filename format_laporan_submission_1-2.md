@@ -1,4 +1,4 @@
-# Laporan Proyek Machine Learning - Jason Hrndrawan
+# Laporan Proyek Machine Learning - Jason Hendrawan
 
 ## Domain Proyek
 
@@ -15,6 +15,33 @@ Menurut Fama (1970), harga saham mencerminkan seluruh informasi yang tersedia di
 
 - E. F. Fama, “Efficient Capital Markets: A Review of Theory and Empirical Work,” The Journal of Finance, vol. 25, no. 2, pp. 383–417, 1970.
 - Investing.com, “Aneka Tambang Tbk (ANTM) Historical Data,” 2025. [Online]. Tersedia: https://id.investing.com/equities/aneka-tambang-historical-data
+
+Mengapa penting dianalisis?
+1. Fluktuasi saham mencerminkan dinamika pasar dan risiko.
+Harga saham ANTM sangat fluktuatif karena sensitivitasnya terhadap harga komoditas seperti nikel dan emas. Tanpa pemahaman mendalam, investor dapat salah mengambil keputusan yang berisiko tinggi.
+
+2. Investor membutuhkan insight untuk strategi investasi.
+Analisis teknikal (misalnya moving average, RSI) maupun fundamental berbasis data historis membantu memprediksi arah pasar dan menentukan titik beli/jual.
+
+3. Kepentingan akademik dan kebijakan.
+Bagi akademisi dan regulator, data historis saham dapat digunakan untuk menilai efisiensi pasar, mendeteksi bubble, atau menilai dampak kebijakan ekonomi terhadap perusahaan publik seperti ANTM.
+
+Bagaimana masalah ini dapat diselesaikan?
+Masalah utama yang bisa diangkat dari dataset ini adalah: “Bagaimana memodelkan dan memprediksi tren harga saham ANTM berdasarkan data historisnya?”
+
+Langkah-langkah penyelesaiannya:
+
+1. Pra-pemrosesan Data:
+- Pembersihan data (missing values, format tanggal, konversi harga).
+- Konversi kolom numerik (misalnya kolom harga dalam format lokal dengan koma menjadi float).
+2. Analisis Statistik dan Visualisasi:
+- Tren umum, volatilitas harian, pergerakan rata-rata (MA), volume transaksi.
+- Korelasi antar variabel: harga pembukaan, penutupan, tertinggi, terendah, volume.
+3. Pemodelan Prediktif:
+- Menggunakan model time-series seperti ARIMA, Prophet, atau LSTM (untuk prediksi jangka pendek).
+- Evaluasi model menggunakan MAE, RMSE, atau MAPE.
+4. Implementasi Strategi Investasi:
+- Simulasi strategi beli-jual berdasarkan indikator teknikal (Moving Average Cross, RSI, MACD).
 
 - Jelaskan mengapa dan bagaimana masalah tersebut harus diselesaikan
 - Menyertakan hasil riset terkait atau referensi. Referensi yang diberikan harus berasal dari sumber yang kredibel dan author yang jelas.
