@@ -56,7 +56,21 @@ Bagian laporan ini mencakup:
 
 ### Problem Statements
 
-Menjelaskan pernyataan masalah latar belakang:
+Deskripsi Singkat:
+Investor dan analis pasar membutuhkan model yang dapat memprediksi arah pergerakan harga saham ANTM (Up/Down) pada periode perdagangan berikutnya. Dengan menggunakan dataset historis harga harian (Open, High, Low, Close, Volume), diharapkan model klasifikasi dapat membantu meminimalkan risiko investasi atau mengambil posisi (beli/jual) secara lebih tepat.
+
+Rincian Masalah:
+- Data Input: Data historis harian saham ANTM, yang meliputi kolom-kolom seperti Tanggal, Harga Open, Harga High, Harga Low, Harga Close, Volume, dan mungkin indikator teknikal turunan (Moving Average, RSI, dll).
+- Target Variabel (Label): Kategori biner (“Up” atau “Down”) berdasarkan perubahan harga penutupan dari satu hari ke hari berikutnya:
+    - Jika (Close_hari_ke_n+1 – Close_hari_ke_n) > 0 → label = “Up”
+    - Jika (Close_hari_ke_n+1 – Close_hari_ke_n) ≤ 0 → label = “Down”
+- Ruangan Output: Prediksi kategorikal (Up/Down) untuk setiap hari perdagangan baru.
+- Kesulitan Utama:
+    1. Volatilitas Tinggi: Harga saham ANTM dipengaruhi oleh faktor eksternal (fluktuasi harga nikel, iklim ekonomi makro, kebijakan pemerintah, sentimen pasar); sehingga pola yang tampak di masa lalu belum tentu terulang secara konsisten di masa depan.
+    2. Dimensi Fitur yang Beragam: Selain harga dasar (OHLC), bisa ditambah indikator teknikal (MA, RSI, MACD) atau data makro lainnya (harga komoditas, suku bunga, nilai tukar). Pemilihan fitur (feature selection) dan engineering (feature engineering) menjadi sangat penting agar model tidak “overfitting” atau justru terlalu “underfitting”.
+    3. Imbalan vs Risiko: Akurasi prediksi (kuantitatif) harus diimbangi dengan aspek finansial (untuk mengukur keuntungan atau kerugian jika strategi trading diimplementasikan), sehingga evaluasi tidak hanya sekadar “akurasi” semata, tetapi juga mempertimbangkan metrik seperti Precision, Recall, dan profitable rate (win-rate).
+
+
 - Pernyataan Masalah 1 – Definisi Label dan Data
 Bagaimana menetapkan kriteria yang konsisten untuk memberi label “Up” atau “Down” pada data historis saham ANTM? Perlu ada rumusan baku (misalnya: perubahan harga penutupan hari berikutnya > 0 → “Up”; ≤ 0 → “Down”) dan pengecekan data hilang atau format yang tidak konsisten (tanggal, harga, volume).
 - Pernyataan Masalah 2 – Feature Selection dan Feature Engineering
