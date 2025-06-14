@@ -2,7 +2,7 @@
 
 ## Domain Proyek
 
-PT Aneka Tambang Tbk (ANTM) adalah perusahaan tambang terkemuka di Indonesia, terutama bergerak di komoditas nikel, emas, dan logam mulia lainnya. Harga saham ANTM sangat dipengaruhi oleh fluktuasi harga komoditas global, kebijakan pemerintah, dan sentimen pasar. Analisis data historis saham ANTM penting untuk membantu investor dan analis keuangan dalam mengambil keputusan investasi yang lebih terukur dan meminimalkan risiko.
+PT Aneka Tambang Tbk (ANTM) adalah perusahaan tambang terkemuka di Indonesia, terutama bergerak di komoditas nikel, emas, dan logam mulia lainnya. Harga saham ANTM sangat dipengaruhi oleh fluktuasi harga komoditas global, kebijakan pemerintah, dan sentimen pasar. Salah satu produk yang dihasilkan oleh PT ANTM Tbk adalah emas. Emas cenderung dianggap orang - orang sebagai salah satu instrumen investasi jangka panjang karena memiliki harga yang pasti akan mengalami kenaikan jika disimpan dalam jangka panjang. Selain emas, komoditas lain yang merupakan produk dari PT ANTM Tbk adalah nikel dimana nikel merupakan  Analisis data historis saham ANTM penting untuk membantu investor dan analis keuangan dalam mengambil keputusan investasi yang lebih terukur dan meminimalkan risiko.
 
 Fluktuasi harga saham mencerminkan dinamika pasar dan risiko yang harus diantisipasi. Investor, analis, dan akademisi membutuhkan data historis sebagai landasan evaluasi kinerja perusahaan dan strategi investasi optimal. Misalnya, data historis ini bisa digunakan untuk:
 
