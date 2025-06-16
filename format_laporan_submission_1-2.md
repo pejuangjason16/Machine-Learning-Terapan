@@ -14,16 +14,6 @@ Menurut Fama (1970), harga saham mencerminkan seluruh informasi yang tersedia di
 2. E. F. Fama, “Efficient Capital Markets: A Review of Theory and Empirical Work,” The Journal of Finance, vol. 25, no. 2, pp. 383–417, 1970.
 3. Investing.com, “Aneka Tambang Tbk (ANTM) Historical Data,” 2025. [Online]. Tersedia: https://id.investing.com/equities/aneka-tambang-historical-data
 
-Mengapa penting dianalisis?
-1. Fluktuasi saham mencerminkan dinamika pasar dan risiko.
-Harga saham ANTM sangat fluktuatif karena sensitivitasnya terhadap harga komoditas seperti nikel dan emas. Tanpa pemahaman mendalam, investor dapat salah mengambil keputusan yang berisiko tinggi.
-
-2. Investor membutuhkan insight untuk strategi investasi.
-Analisis teknikal (misalnya moving average, RSI) maupun fundamental berbasis data historis membantu memprediksi arah pasar dan menentukan titik beli/jual.
-
-3. Kepentingan akademik dan kebijakan.
-Bagi akademisi dan regulator, data historis saham dapat digunakan untuk menilai efisiensi pasar, mendeteksi bubble, atau menilai dampak kebijakan ekonomi terhadap perusahaan publik seperti ANTM.
-
 Bagaimana masalah ini dapat diselesaikan?
 Masalah utama yang bisa diangkat dari dataset ini adalah: “Bagaimana memodelkan dan memprediksi tren harga saham ANTM berdasarkan data historisnya?”
 
@@ -48,14 +38,10 @@ Langkah-langkah penyelesaiannya:
 
 ## Business Understanding
 
-Pada bagian ini, kamu perlu menjelaskan proses klarifikasi masalah.
-
-Bagian laporan ini mencakup:
-
 ### Problem Statements
 
 Deskripsi Singkat:
-Investor dan analis pasar membutuhkan model yang dapat memprediksi arah pergerakan harga saham ANTM (Up/Down) pada periode perdagangan berikutnya. Dengan menggunakan dataset historis harga harian (Open, High, Low, Close, Volume), diharapkan model klasifikasi dapat membantu meminimalkan risiko investasi atau mengambil posisi (beli/jual) secara lebih tepat.
+Investor dan analis pasar membutuhkan model yang dapat memprediksi arah pergerakan harga saham ANTM menggunakan fitur Up/Down pada periode perdagangan berikutnya. Dengan menggunakan dataset historis harga harian yang terdiri dari fitur Open, High, Low, Close, Volume, model klasifikasi diharapkan dapat membantu meminimalkan risiko investasi atau menetapkan keputusan untuk beli/jual secara lebih tepat.
 
 Rincian Masalah:
 - Data Input: Data historis harian saham ANTM, yang meliputi kolom-kolom seperti Tanggal, Harga Open, Harga High, Harga Low, Harga Close, Volume, dan mungkin indikator teknikal turunan (Moving Average, RSI, dll).
@@ -109,8 +95,6 @@ Menjelaskan tujuan dari pernyataan masalah:
     - Lakukan backtesting selama 6 bulan terakhir untuk mengukur return kumulatif, max drawdown, dan Sharpe Ratio.
     - Terukur: Return ≥ 5% dalam 6 bulan; Sharpe Ratio ≥ 1,0.
 
-Semua poin di atas harus diuraikan dengan jelas. Anda bebas menuliskan berapa pernyataan masalah dan juga goals yang diinginkan.
-
 **Rubrik/Kriteria Tambahan (Opsional)**:
 - Menambahkan bagian “Solution Statement” yang menguraikan cara untuk meraih goals. Bagian ini dibuat dengan ketentuan sebagai berikut: 
 
@@ -139,27 +123,24 @@ Semua poin di atas harus diuraikan dengan jelas. Anda bebas menuliskan berapa pe
         - Jika perbedaan kecil (ΔF1 < 0,02), pertimbangkan faktor interpretabilitas dan kecepatan (Logistic Regression lebih sederhana). Jika perbedaan signifikan, pilih Random Forest Tuned sebagai model akhir.
 
 ## Data Understanding
-Paragraf ini menjelaskan data yang digunakan:
-Dataset “Data Historis ANTM” berisi informasi harian harga saham PT Aneka Tambang Tbk (ANTM) dari Januari 2023 hingga Maret 2025, diunduh dari Investing.com [3]. Data awal terdiri dari kolom: Tanggal, Terakhir (Close), Pembukaan (Open), Tertinggi (High), Terendah (Low), Vol. (Volume dalam format “M”), dan Perubahan% (Change% sebagai string).
+Dataset yang digunakan untuk proyek ini yaitu “Data Historis ANTM” berisi informasi harian harga saham PT Aneka Tambang Tbk (ANTM) mulai dari bulan Januari 2023 hingga bulan Maret 2025 yang diunduh dari situs Investing.com [3]. Data awal terdiri dari kolom - kolom berikut, yaitu: Tanggal, Terakhir (Close), Pembukaan (Open), Tertinggi (High), Terendah (Low), Vol. (Volume dalam format “M”), dan Perubahan% (Change% sebagai string).
 
 ## Sumber Data
 Investing.com, “Aneka Tambang Tbk Historical Data,” 2025. [Online]. Tersedia: https://id.investing.com/equities/aneka-tambang-historical-data
 
-Paragraf awal bagian ini menjelaskan informasi mengenai data yang Anda gunakan dalam proyek. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data).
-
 Selanjutnya uraikanlah seluruh variabel atau fitur pada data. Sebagai contoh:  
 
-### Variabel-variabel pada Historis ANTM dataset adalah sebagai berikut:
+### Variabel-variabel yang terdapat pada dataset "Data Historis ANTM" adalah sebagai berikut:
 1. Date (datetime64)
     - Tanggal perdagangan harian (aslinya format dd/mm/YYYY).
 2. Close (float64)
-    - Harga penutupan saham pada akhir hari (dalam juta Rupiah—misalnya 1.635 berarti Rp 1.635.000).
+    - Harga penutupan saham pada akhir hari (dalam bentuk juta-an Rupiah, misalnya 1.635 berarti Rp 1.635.000).
 3. Open (float64)
-    - Harga pembukaan pada awal hari perdagangan (juta Rupiah).
+    - Harga pembukaan pada awal hari perdagangan (dalam bentuk juta-an Rupiah).
 4. High (float64)
-    - Harga tertinggi dalam hari perdagangan (juta Rupiah).
+    - Harga tertinggi dalam hari perdagangan (dalam bentuk juta-an Rupiah).
 5. Low (float64)
-    - Harga terendah dalam hari perdagangan (juta Rupiah).
+    - Harga terendah dalam hari perdagangan (dalam bentuk juta-an Rupiah).
 6. Volume (string)
     - Volume perdagangan harian dalam format “M” (contoh: 32,28M berarti 32,28 juta lembar).
 7. ChangePercent (string)
@@ -168,7 +149,7 @@ Selanjutnya uraikanlah seluruh variabel atau fitur pada data. Sebagai contoh:
     - Volume bersih hasil konversi ke angka:
         1. Hilangkan “M”
         2. Ganti koma “,” dengan titik “.”
-        3. Ubah ke float dan kalikan dengan 1e6.
+        3. Ubah bentuk data ke float dan kalikan dengan 1e6.
     - Satuan: lembar saham (contoh: 32,28M → 32.28 × 10^6).
 9. ChangePercentNumeric (float64)
     - Persentase perubahan dalam bentuk float:
@@ -176,12 +157,14 @@ Selanjutnya uraikanlah seluruh variabel atau fitur pada data. Sebagai contoh:
         2. Ganti koma “,” dengan titik “.”
         3. Ubah ke float (contoh: -0,91% → −0.91).
 10. Return (float64)
-    - Persentase perubahan harga penutupan hari ini dibandingkan hari sebelumnya:
-    - Baris pertama menghasilkan NaN dan kemudian di-drop.
+    - Persentase perubahan harga penutupan hari ini dibandingkan hari sebelumnya.
+    - Baris pertama berisikan "NaN" yang kemudian di-drop.
 11. Label (string)
     - “Up” jika Return > 0, “Down” jika Return ≤ 0.
 12. LabelNumeric (int64)
     - Konversi Label: “Down” → 0, “Up” → 1.
+
+![Correlation Matrix for Numerical Features](Corr Matrix Num Features.png)
 
 **Rubrik/Kriteria Tambahan (Opsional)**:
 - Melakukan beberapa tahapan yang diperlukan untuk memahami data, contohnya teknik visualisasi data atau exploratory data analysis.
