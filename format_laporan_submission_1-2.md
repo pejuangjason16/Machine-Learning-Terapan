@@ -2,19 +2,17 @@
 
 ## Domain Proyek
 
-PT Aneka Tambang Tbk (ANTM) adalah perusahaan tambang terkemuka di Indonesia, terutama bergerak di komoditas nikel, emas, dan logam mulia lainnya. Harga saham ANTM sangat dipengaruhi oleh fluktuasi harga komoditas global, kebijakan pemerintah, dan sentimen pasar. Salah satu produk yang dihasilkan oleh PT ANTM Tbk adalah emas. Emas cenderung dianggap orang - orang sebagai salah satu instrumen investasi jangka panjang karena memiliki harga yang pasti akan mengalami kenaikan jika disimpan dalam jangka panjang. Selain emas, komoditas lain yang merupakan produk dari PT ANTM Tbk adalah nikel dimana nikel merupakan  Analisis data historis saham ANTM penting untuk membantu investor dan analis keuangan dalam mengambil keputusan investasi yang lebih terukur dan meminimalkan risiko.
+PT Aneka Tambang Tbk (ANTM) adalah perusahaan tambang terkemuka di Indonesia, terutama bergerak di komoditas nikel, emas, dan logam mulia lainnya. Harga saham ANTM sangat dipengaruhi oleh fluktuasi harga komoditas global, kebijakan pemerintah, dan sentimen pasar. Salah satu produk yang dihasilkan oleh PT ANTM Tbk adalah emas. Emas cenderung dianggap orang - orang sebagai salah satu instrumen investasi jangka panjang karena memiliki harga yang pasti akan mengalami kenaikan jika disimpan dalam jangka panjang seperti grafik harga emas yang bisa dilihat pada [1]. Dengan demikian, seharusnya harga saham yang miliki oleh PT ANTM Tbk juga mengalami kenaikan dikarenakan tingkat penjualan yang tinggi dan harga jual yang tinggi dari produk andalannya yaitu emas. Sebagai salah satu perusahaan besar yang ternama, penting untuk melakukan analisis data historis saham ANTM untuk membantu investor dan analis keuangan dalam mengambil keputusan investasi yang lebih terukur dan meminimalkan risiko.
 
-Fluktuasi harga saham mencerminkan dinamika pasar dan risiko yang harus diantisipasi. Investor, analis, dan akademisi membutuhkan data historis sebagai landasan evaluasi kinerja perusahaan dan strategi investasi optimal. Misalnya, data historis ini bisa digunakan untuk:
+Fluktuasi harga saham mencerminkan dinamika pasar dan kondisi pasar saat ini, serta mampu membantu mengenali risiko yang harus diantisipasi. Data historis sangatlah diperlukan sebagai landasan evaluasi kinerja perusahaan dan strategi investasi optimal yang memiliki banyak kegunaan, seperti untuk menilai volatilitas harian dan tren jangka panjang. Guna lainnya juga bisa untuk membangun model prediksi arah harga (naik/turun) sebagai dasar strategi beli/jual. 
 
-Menilai volatilitas harian dan tren jangka panjang.
-Membangun model prediksi arah harga (naik/turun) sebagai dasar strategi beli/jual.
-Mengukur dampak kebijakan ekonomi atau perubahan harga nikel global terhadap saham ANTM.
-Menurut Fama (1970), harga saham mencerminkan seluruh informasi yang tersedia di pasar—teori pasar efisien [1]. Dalam konteks ANTM, data historis harian (open, high, low, close, volume, persentase perubahan) dari Investing.com (ANTM Historical Data) dapat digunakan sebagai input untuk pemodelan machine learning [2].
+Menurut Fama (1970), harga saham mencerminkan seluruh informasi yang tersedia di pasar—teori pasar efisien [2]. Dalam konteks ANTM, data historis harian (open, high, low, close, volume, persentase perubahan) dari Investing.com (ANTM Historical Data) dapat digunakan sebagai input untuk pemodelan machine learning [3].
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
+**Referensi**:
 
-- E. F. Fama, “Efficient Capital Markets: A Review of Theory and Empirical Work,” The Journal of Finance, vol. 25, no. 2, pp. 383–417, 1970.
-- Investing.com, “Aneka Tambang Tbk (ANTM) Historical Data,” 2025. [Online]. Tersedia: https://id.investing.com/equities/aneka-tambang-historical-data
+1. Harga-Emas.org, “Grafik Harga Emas Hari Ini,” Harga-Emas.org, https://harga-emas.org/grafik
+2. E. F. Fama, “Efficient Capital Markets: A Review of Theory and Empirical Work,” The Journal of Finance, vol. 25, no. 2, pp. 383–417, 1970.
+3. Investing.com, “Aneka Tambang Tbk (ANTM) Historical Data,” 2025. [Online]. Tersedia: https://id.investing.com/equities/aneka-tambang-historical-data
 
 Mengapa penting dianalisis?
 1. Fluktuasi saham mencerminkan dinamika pasar dan risiko.
