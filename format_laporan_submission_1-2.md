@@ -164,7 +164,7 @@ Selanjutnya uraikanlah seluruh variabel atau fitur pada data. Sebagai contoh:
 12. LabelNumeric (int64)
     - Konversi Label: “Down” → 0, “Up” → 1.
 
-![Correlation Matrix for Numerical Features](Corr Matrix Num Features.png)
+![Correlation Matrix for Numerical Features](Corr_Matrix_Num_Features.png)
 
 **Rubrik/Kriteria Tambahan (Opsional)**:
 - Melakukan beberapa tahapan yang diperlukan untuk memahami data, contohnya teknik visualisasi data atau exploratory data analysis.
