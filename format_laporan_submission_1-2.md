@@ -201,22 +201,26 @@ Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyel
 Berikut tahapan pemodelan klasifikasi biner (“Up”/“Down”) menggunakan dua algoritma: Logistic Regression dan Random Forest. Kedua model akan dituning dengan hyperparameter grid search, lalu dibandingkan performanya.
 
 1. Logistic Regression (Baseline & Hyperparameter Tuning)
-1.1. Deskripsi Singkat
 
+1.1. Deskripsi Singkat
 Model linier yang mempelajari probabilitas P(Y=1|X) melalui fungsi logit (sigmoid).
 Koefisien dapat diinterpretasikan sebagai log‐odds ratio.
 Cepat dilatih, cocok sebagai baseline.
+
 1.2. Pembuatan Model Awal (Baseline)
+
 1.3. Kelebihan & Kekurangan Logistic Regression
 
 Kelebihan:
-Interpretabilitas tinggi (koefisien log‐odds).
-Cepat dan ringan komputasi.
-Cenderung tidak overfit jika fitur tidak terlalu banyak.
+- Interpretabilitas tinggi (koefisien log‐odds).
+- Cepat dan ringan komputasi.
+- Cenderung tidak overfit jika fitur tidak terlalu banyak.
+
 Kekurangan:
-Hanya memisahkan secara linier—kurang optimal untuk pola non-linier.
-Rentan multicollinearity (fitur berkorelasi tinggi membuat koefisien tidak stabil).
-Performa menurun jika distribusi kelas tidak seimbang.
+- Hanya memisahkan secara linier—kurang optimal untuk pola non-linier.
+- Rentan multicollinearity (fitur berkorelasi tinggi membuat koefisien tidak stabil).
+- Performa menurun jika distribusi kelas tidak seimbang.
+
 1.4. Hyperparameter Tuning Logistic Regression
     1. Grid Parameter
     2. GridSearchCV
@@ -229,20 +233,25 @@ Performa menurun jika distribusi kelas tidak seimbang.
     AUC-ROC ≈ 0.66
 
 2. Random Forest Classifier
+
 2.1. Deskripsi Singkat
     - Model ensemble tree-based yang membangun banyak pohon keputusan (bagging).
     - Setiap pohon dilatih pada subset data dan subset fitur.
     - Prediksi akhir diambil dari voting (kelas mayoritas).
+
 2.2. Pembuatan Model Awal (Baseline)
+
 2.3. Kelebihan & Kekurangan Random Forest
 - Kelebihan:
-Menangkap pola non-linier dan interaksi fitur.
-Tahan terhadap multicollinearity dan outlier.
-Tidak perlu normalisasi fitur.
+    - Menangkap pola non-linier dan interaksi fitur.
+    - Tahan terhadap multicollinearity dan outlier.
+    - Tidak perlu normalisasi fitur.
+
 - Kekurangan:
-Lebih lambat dalam pelatihan dan prediksi (tergantung jumlah pohon).
-Kurang interpretabel—hanya feature importance saja.
-Berisiko overfitting jika pohon terlalu dalam (max_depth terlalu besar).
+    - Lebih lambat dalam pelatihan dan prediksi (tergantung jumlah pohon).
+    - Kurang interpretabel—hanya feature importance saja.
+    - Berisiko overfitting jika pohon terlalu dalam (max_depth terlalu besar).
+
 2.4. Hyperparameter Tuning Random Forest
     1. Grid Parameter
     2. GridSearchCV
@@ -253,11 +262,6 @@ Berisiko overfitting jika pohon terlalu dalam (max_depth terlalu besar).
     Recall ≈ 0.70
     F1-Score ≈ 0.68
     AUC-ROC ≈ 0.72
-
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan kelebihan dan kekurangan dari setiap algoritma yang digunakan.
-- Jika menggunakan satu algoritma pada solution statement, lakukan proses improvement terhadap model dengan hyperparameter tuning. **Jelaskan proses improvement yang dilakukan**.
-- Jika menggunakan dua atau lebih algoritma pada solution statement, maka pilih model terbaik sebagai solusi. **Jelaskan mengapa memilih model tersebut sebagai model terbaik**.
 
 Pemilihan Model Terbaik
 - F1-Score: Random Forest Tuned (0,68) > Logistic Regression Tuned (0,63).
