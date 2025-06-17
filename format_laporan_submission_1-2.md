@@ -2,11 +2,15 @@
 
 ## Domain Proyek
 
-PT Aneka Tambang Tbk (ANTM) adalah perusahaan tambang terkemuka di Indonesia, terutama bergerak di komoditas nikel, emas, dan logam mulia lainnya. Harga saham ANTM sangat dipengaruhi oleh fluktuasi harga komoditas global, kebijakan pemerintah, dan sentimen pasar. Salah satu produk yang dihasilkan oleh PT ANTM Tbk adalah emas. Emas cenderung dianggap orang - orang sebagai salah satu instrumen investasi jangka panjang karena memiliki harga yang pasti akan mengalami kenaikan jika disimpan dalam jangka panjang seperti grafik harga emas yang bisa dilihat pada [1]. Dengan demikian, seharusnya harga saham yang miliki oleh PT ANTM Tbk juga mengalami kenaikan dikarenakan tingkat penjualan yang tinggi dan harga jual yang tinggi dari produk andalannya yaitu emas. Sebagai salah satu perusahaan besar yang ternama, penting untuk melakukan analisis data historis saham ANTM untuk membantu investor dan analis keuangan dalam mengambil keputusan investasi yang lebih terukur dan meminimalkan risiko.
+Pasar modal, khususnya pasar saham, merupakan ekosistem yang kompleks dan dinamis, dipengaruhi oleh berbagai faktor ekonomi makro, kebijakan pemerintah, peristiwa geopolitik, dan sentimen investor. Fluktuasi harga saham harian dapat menghadirkan peluang keuntungan yang signifikan sekaligus risiko kerugian yang substansial bagi para pelaku pasar. Oleh karena itu, kemampuan untuk memahami dan memprediksi pergerakan harga saham merupakan tantangan fundamental yang terus menjadi fokus penelitian dalam analisis keuangan.
 
-Fluktuasi harga saham mencerminkan dinamika pasar dan kondisi pasar saat ini, serta mampu membantu mengenali risiko yang harus diantisipasi. Data historis sangatlah diperlukan sebagai landasan evaluasi kinerja perusahaan dan strategi investasi optimal yang memiliki banyak kegunaan, seperti untuk menilai volatilitas harian dan tren jangka panjang. Guna lainnya juga bisa untuk membangun model prediksi arah harga (naik/turun) sebagai dasar strategi beli/jual. 
+Proyek ini secara spesifik berfokus pada analisis dan prediksi harga saham PT Aneka Tambang Tbk (ANTM), sebuah perusahaan pertambangan terkemuka di Indonesia. Sebagai entitas yang beroperasi di sektor komoditas, harga saham ANTM sangat rentan terhadap dinamika pasar global dan domestik, termasuk perubahan harga komoditas, kebijakan ekspor/impor, dan kondisi ekonomi global. Karakteristik ini menjadikan ANTM sebagai studi kasus yang menarik dan relevan untuk aplikasi teknik machine learning dalam prediksi pasar.
 
-Menurut Fama (1970), harga saham mencerminkan seluruh informasi yang tersedia di pasar—teori pasar efisien [2]. Dalam konteks ANTM, data historis harian (open, high, low, close, volume, persentase perubahan) dari Investing.com (ANTM Historical Data) dapat digunakan sebagai input untuk pemodelan machine learning [3].
+Kemampuan untuk memprediksi arah pergerakan harga saham, bahkan dengan tingkat akurasi yang moderat, dapat memberikan keunggulan kompetitif yang signifikan bagi investor dan analis keuangan. Hal ini memungkinkan perumusan keputusan investasi yang lebih terinformasi, implementasi strategi manajemen risiko yang lebih efektif, dan potensi optimalisasi keuntungan. Pendekatan analisis fundamental atau teknikal tradisional, meskipun penting, seringkali tidak cukup untuk menangkap semua nuansa pasar yang kompleks dan non-linear. Oleh karena itu, diperlukan metode yang lebih canggih untuk mengidentifikasi pola tersembunyi dan hubungan yang tidak linear dalam data pasar.
+
+Machine learning menawarkan pendekatan yang kuat untuk mengatasi kompleksitas ini. Dengan melatih model pada data historis harga dan volume perdagangan, sistem dapat dibangun untuk mengidentifikasi pola yang mungkin tidak terlihat oleh metode statistik konvensional. Pendekatan ini memungkinkan pengembangan sistem yang mampu mengklasifikasikan atau memprediksi arah pergerakan harga saham di masa depan, memberikan sinyal yang dapat digunakan sebagai dasar pengambilan keputusan.
+
+Meskipun proyek ini secara primer memanfaatkan data numerik historis harga saham, penting untuk diakui bahwa sentimen pasar merupakan faktor krusial yang turut memengaruhi pergerakan harga saham. Sentimen ini dapat diekstraksi dari data tekstual yang melimpah, seperti berita keuangan, laporan analis, dan percakapan di media sosial. Penelitian di bidang ini secara konsisten menunjukkan bahwa analisis sentimen, yang merupakan aplikasi langsung dari klasifikasi teks, dapat memberikan wawasan objektif mengenai persepsi publik terhadap suatu entitas atau aset finansial. 1  Berbagai algoritma machine learning, termasuk Naive Bayes, Support Vector Machines (SVM), dan Deep Neural Networks (seperti Convolutional Neural Networks atau CNN), telah terbukti sangat efektif dalam tugas klasifikasi teks dan analisis sentimen. 2  Selain itu, teknik-teknik Natural Language Processing (NLP) seperti analisis N-gram (monogram, bigram, trigram) dan word embedding digunakan untuk menangkap nuansa bahasa serta pola sentimen yang terkandung dalam teks. 3  Integrasi data sentimen dengan data harga historis di masa depan berpotensi menghasilkan model prediksi yang lebih akurat dan komprehensif, mencerminkan pemahaman yang lebih holistik tentang dinamika pasar.
 
 **Referensi**:
 
@@ -38,92 +42,79 @@ Langkah-langkah penyelesaiannya:
 
 ## Business Understanding
 
+Bagian ini menguraikan klarifikasi masalah bisnis yang ingin diselesaikan melalui proyek machine learning ini, menjabarkan pernyataan masalah, tujuan, dan usulan solusi yang terukur.
+
 ### Problem Statements
 
-Deskripsi Singkat:
-Investor dan analis pasar membutuhkan model yang dapat memprediksi arah pergerakan harga saham ANTM menggunakan fitur Up/Down pada periode perdagangan berikutnya. Dengan menggunakan dataset historis harga harian yang terdiri dari fitur Open, High, Low, Close, Volume, model klasifikasi diharapkan dapat membantu meminimalkan risiko investasi atau menetapkan keputusan untuk beli/jual secara lebih tepat.
+Pergerakan harga saham di pasar modal adalah fenomena yang sangat kompleks, dipengaruhi oleh interaksi berbagai faktor yang seringkali tidak linear dan sulit diprediksi. Keterbatasan metode analisis tradisional dalam menangkap seluruh nuansa ini memunculkan kebutuhan akan pendekatan yang lebih canggih. Berdasarkan konteks ini, proyek ini merumuskan beberapa pernyataan masalah utama:
 
-Rincian Masalah:
-- Data Input: Data historis harian saham ANTM, yang meliputi kolom-kolom seperti Tanggal, Harga Open, Harga High, Harga Low, Harga Close, Volume, dan mungkin indikator teknikal turunan (Moving Average, RSI, dll).
-- Target Variabel (Label): Kategori biner (“Up” atau “Down”) berdasarkan perubahan harga penutupan dari satu hari ke hari berikutnya:
-    - Jika (Close_hari_ke_n+1 – Close_hari_ke_n) > 0 → label = “Up”
-    - Jika (Close_hari_ke_n+1 – Close_hari_ke_n) ≤ 0 → label = “Down”
-- Ruangan Output: Prediksi kategorikal (Up/Down) untuk setiap hari perdagangan baru.
-- Kesulitan Utama:
-    1. Volatilitas Tinggi: Harga saham ANTM dipengaruhi oleh faktor eksternal (fluktuasi harga nikel, iklim ekonomi makro, kebijakan pemerintah, sentimen pasar); sehingga pola yang tampak di masa lalu belum tentu terulang secara konsisten di masa depan.
-    2. Dimensi Fitur yang Beragam: Selain harga dasar (OHLC), bisa ditambah indikator teknikal (MA, RSI, MACD) atau data makro lainnya (harga komoditas, suku bunga, nilai tukar). Pemilihan fitur (feature selection) dan engineering (feature engineering) menjadi sangat penting agar model tidak “overfitting” atau justru terlalu “underfitting”.
-    3. Imbalan vs Risiko: Akurasi prediksi (kuantitatif) harus diimbangi dengan aspek finansial (untuk mengukur keuntungan atau kerugian jika strategi trading diimplementasikan), sehingga evaluasi tidak hanya sekadar “akurasi” semata, tetapi juga mempertimbangkan metrik seperti Precision, Recall, dan profitable rate (win-rate).
-
-
-- Pernyataan Masalah 1 – Definisi Label dan Data
-Bagaimana menetapkan kriteria yang konsisten untuk memberi label “Up” atau “Down” pada data historis saham ANTM? Perlu ada rumusan baku (misalnya: perubahan harga penutupan hari berikutnya > 0 → “Up”; ≤ 0 → “Down”) dan pengecekan data hilang atau format yang tidak konsisten (tanggal, harga, volume).
-- Pernyataan Masalah 2 – Feature Selection dan Feature Engineering
-Fitur apa saja yang relevan untuk memprediksi pergerakan harga (Up/Down)? Apakah cukup menggunakan harga dasar (Open, High, Low, Close, Volume) atau perlu menambahkan indikator teknikal (MA, RSI) atau data eksternal seperti harga nikel global dan IHSG?
-- Pernyataan Masalah 3 – Pemilihan Algoritma Klasifikasi
-Algoritma klasifikasi apa yang paling sesuai: Logistic Regression, Decision Tree, Random Forest, atau algoritma lain seperti XGBoost? Bagaimana memeriksa asumsi dan karakteristik masing-masing model sehingga cocok untuk data time-series harga saham?
-- Pernyataan Masalah 4 – Evaluasi Model dan Dampak pada Strategi Investasi
-Bagaimana cara mengevaluasi kinerja model secara adil—tidak hanya akurasi, tetapi juga precision, recall, F1-Score, dan AUC-ROC—mengingat biaya kesalahan (False Positive vs False Negative) berbeda? Bagaimana menyusun backtesting sederhana untuk menghitung potensi return dan risiko?
+- Pernyataan Masalah 1: Bagaimana mengidentifikasi pola dan tren tersembunyi dalam data harga saham historis PT ANTM Tbk untuk memprediksi arah pergerakan harga harian?
+Fluktuasi harga saham seringkali dipengaruhi oleh dinamika pasar yang kompleks dan non-linear, yang sulit ditangkap oleh analisis tradisional. Machine learning memiliki potensi untuk mengungkap hubungan dan pola tersembunyi ini, yang mungkin tidak terlihat oleh mata manusia atau metode statistik konvensional.
+- Pernyataan Masalah 2: Bagaimana mengembangkan model machine learning yang dapat secara akurat mengklasifikasikan apakah harga penutupan saham PT ANTM Tbk akan naik atau turun pada hari perdagangan berikutnya?
+Akurasi dalam memprediksi arah pergerakan harga, dibandingkan dengan memprediksi nilai harga secara eksak, adalah kunci untuk mendukung keputusan investasi yang lebih baik dan mengurangi risiko. Bagi investor, mengetahui apakah harga akan naik atau turun pada hari berikutnya lebih langsung dapat diterjemahkan menjadi keputusan beli atau jual, dibandingkan dengan prediksi harga spesifik yang mungkin memiliki margin kesalahan.
+- Pernyataan Masalah 3: Bagaimana mengevaluasi kinerja model prediksi secara kuantitatif untuk memastikan keandalannya dalam skenario pasar yang realistis?
+Tanpa metrik evaluasi yang tepat dan relevan, efektivitas dan keandalan model tidak dapat diukur atau dipercaya. Penting untuk menggunakan metrik yang tidak hanya menunjukkan akurasi keseluruhan, tetapi juga kemampuan model untuk menangani kelas yang mungkin tidak seimbang (misalnya, jumlah hari naik vs. turun) dan implikasi dari kesalahan prediksi.
 
 ### Goals
 
-Menjelaskan tujuan dari pernyataan masalah:
-- Goal 1 (Data Preparation)
-    - Bersihkan dan persiapkan dataset historis ANTM sehingga:
-        - Format tanggal seragam (YYYY-MM-DD), tanpa missing atau duplikat.
-        - Semua kolom harga dan volume terkonversi ke tipe numerik yang tepat (float).
-    - Terukur: Data siap pakai, tanpa missing (0%) setelah pembersihan.
+Sejalan dengan pernyataan masalah yang telah diidentifikasi, proyek ini menetapkan tujuan-tujuan berikut:
 
-- Goal 2 (Feature Engineering & Selection)
-    - Hasilkan fitur optimal:
-        - Harga dasar: Close (atau kombinasi OHLC yang diminimalkan korelasinya).
-        - Indikator teknikal: Return harian, persentase perubahan, moving average (opsional).
-        - Data eksternal: Harga nikel global, IHSG (jika tersedia).
-    - Terukur:
-        - Jumlah fitur final ≤ 15.
-        - Korelasi maksimum antar fitur < 0,85.
-        - Signifikansi statistik (p-value < 0,05) terhadap label “Up/Down”.
-
-- Goal 3 (Model Building & Evaluation)
-    - Bangun minimal dua algoritma klasifikasi:
-        - Baseline: Logistic Regression.
-        - Model non-linier: Random Forest.
-    - Lakukan 5-Fold Cross-Validation, kemudian tentukan metrik: accuracy ≥ 60% dan F1-Score ≥ 0,55.
-    - Terukur: Satu model memenuhi target metrik pada data validasi.
-
-- Goal 4 (Backtesting Strategi Trading)
-    - Ubah prediksi “Up/Down” menjadi sinyal “Buy” atau “Sell/Hold.”
-    - Lakukan backtesting selama 6 bulan terakhir untuk mengukur return kumulatif, max drawdown, dan Sharpe Ratio.
-    - Terukur: Return ≥ 5% dalam 6 bulan; Sharpe Ratio ≥ 1,0.
+- Tujuan 1: Mengembangkan pemahaman mendalam tentang struktur data historis PT ANTM Tbk dan mengidentifikasi fitur-fitur yang paling relevan untuk prediksi.
+Ini mencakup eksplorasi data untuk memahami distribusi, tren, dan anomali, serta mengidentifikasi atau merekayasa fitur-fitur yang paling informatif dari data mentah.
+- Tujuan 2: Membangun dan mengoptimalkan model klasifikasi machine learning yang mampu memprediksi arah pergerakan harga saham ANTM dengan tingkat akurasi yang dapat diterima.
+Fokus pada klasifikasi arah pergerakan harga (naik atau turun) menjadikan masalah ini lebih terarah untuk pengambilan keputusan investasi harian. Pendekatan ini memungkinkan pemanfaatan algoritma klasifikasi yang telah terbukti efektif dalam memproses data tekstual dan numerik, seperti yang terlihat dalam berbagai aplikasi klasifikasi teks.   
+- Tujuan 3: Melakukan evaluasi kinerja model secara komprehensif menggunakan metrik yang relevan untuk klasifikasi, seperti akurasi, presisi, recall, dan F1-score, untuk memvalidasi efektivitas model.
+Evaluasi yang ketat akan memastikan bahwa model tidak hanya memberikan prediksi yang sering benar, tetapi juga dapat diandalkan dalam skenario di mana kesalahan prediksi memiliki konsekuensi finansial.
 
 **Rubrik/Kriteria Tambahan (Opsional)**:
 - Menambahkan bagian “Solution Statement” yang menguraikan cara untuk meraih goals. Bagian ini dibuat dengan ketentuan sebagai berikut: 
 
     ### Solution statements
-    1. Solution Statement 1 – Logistic Regression + Hyperparameter Tuning
-        - Langkah-langkah:
-            1. Gunakan fitur terpilih: Close, Return, Volume, Change Percent.
-            2. Latih model Logistic Regression (penalty=L2, solver=‘lbfgs’, C=1.0) → evaluasi 5-Fold CV (F1).
-            3. Grid Search pada parameter C ∈ {0.01, 0.1, 1.0, 10.0, 100.0}, max_iter ∈ {500, 1000}.
-            4. Pilih konfigurasi terbaik berdasarkan F1-Score.
-            5. Retrain pada data latih penuh → evaluasi di data uji.
-        - Metrik Evaluasi: F1-Score (primer), Accuracy, Precision, Recall, AUC-ROC (sekunder).
+    Untuk mencapai tujuan prediksi arah pergerakan harga saham, beberapa pendekatan machine learning akan diimplementasikan dan dibandingkan. Pendekatan ini dirancang untuk memanfaatkan kekuatan algoritma klasifikasi dalam mengidentifikasi pola dari data historis dan memberikan hasil yang terukur.
 
-    2. Solution Statement 2 – Random Forest + Hyperparameter Tuning
-        - Langkah-langkah:
-            1. Gunakan fitur sama seperti di Solution 1.
-            2. Latih Random Forest (n_estimators=100, max_depth=None, min_samples_split=2, max_features='sqrt') → evaluasi 5-Fold CV (F1).
-            3. Grid Search pada n_estimators ∈ {50, 100, 200}, max_depth ∈ {None, 5, 10, 20}, min_samples_split ∈ {2, 5, 10}, min_samples_leaf ∈ {1, 2, 5}, max_features ∈ {'sqrt','log2'}.
-            4. Pilih konfigurasi terbaik berdasarkan F1-Score.
-            5. Retrain dan evaluasi di data uji.
-        - Metrik Evaluasi: F1-Score (primer), Accuracy, Precision, Recall, AUC-ROC.
+    Pendekatan Solusi yang Diajukan:
 
-    3. Perbandingan & Pemilihan Model Terbaik
-        - Bandingkan F1-Score dan AUC-ROC hasil tuning.
-        - Pilih model dengan F1-Score tertinggi (dengan AUC-ROC > 0,70 sebagai syarat minimal).
-        - Jika perbedaan kecil (ΔF1 < 0,02), pertimbangkan faktor interpretabilitas dan kecepatan (Logistic Regression lebih sederhana). Jika perbedaan signifikan, pilih Random Forest Tuned sebagai model akhir.
+    Untuk mengatasi masalah klasifikasi biner (harga naik atau turun), dua atau lebih algoritma klasifikasi machine learning akan diimplementasikan dan kinerjanya akan dibandingkan. Kandidat algoritma dipilih berdasarkan relevansi dan efektivitasnya dalam tugas klasifikasi:
+
+    - Logistic Regression: Algoritma ini akan digunakan sebagai baseline model. Kelebihannya terletak pada kesederhanaan dan kecepatan pelatihannya, serta kemudahannya dalam interpretasi hasil. Meskipun demikian, keterbatasannya adalah asumsi linearitas hubungan antara fitur dan probabilitas logaritmik variabel target, yang mungkin tidak sepenuhnya sesuai untuk menangkap pola non-linear kompleks dalam data saham.   
+    - Support Vector Machines (SVM): SVM dikenal karena efektivitasnya dalam ruang berdimensi tinggi dan kemampuannya untuk menangani hubungan non-linear melalui penggunaan kernel trick. Algoritma ini memiliki kemampuan generalisasi yang baik, menjadikannya pilihan yang kuat untuk masalah klasifikasi biner seperti prediksi arah harga saham. Namun, SVM sensitif terhadap penskalaan fitur dan membutuhkan hyperparameter tuning yang cermat untuk mencapai kinerja optimal.   
+    - Random Forest: Sebagai metode ensemble yang kuat, Random Forest mampu menangani hubungan non-linear dan interaksi fitur secara efektif. Algoritma ini kurang sensitif terhadap overfitting dibandingkan decision tree tunggal dan dapat memberikan estimasi pentingnya fitur, yang berguna untuk pemahaman data. Kekurangannya adalah sifatnya yang kurang interpretable (sering disebut black-box model) dibandingkan regresi logistik, dan dapat menjadi intensif secara komputasi untuk dataset yang sangat besar atau jumlah pohon yang banyak.   
+    Setiap model yang dipilih akan menjalani proses hyperparameter tuning yang sistematis untuk mengoptimalkan kinerjanya. Teknik seperti Grid Search atau Randomized Search yang dikombinasikan dengan Cross-Validation akan diterapkan untuk menemukan kombinasi hyperparameter terbaik. Setelah proses tuning, model dengan kinerja terbaik akan dipilih sebagai solusi utama.
+
+    Metrik Kuantitatif untuk Pengukuran Solusi:
+
+    Keberhasilan solusi akan diukur secara kuantitatif menggunakan metrik evaluasi klasifikasi standar. Metrik ini akan memberikan gambaran holistik tentang kemampuan model dalam memprediksi kenaikan dan penurunan harga saham secara seimbang:
+
+    - Akurasi (Accuracy): Mengukur proporsi prediksi yang benar dari total prediksi.
+    - Presisi (Precision): Mengukur proporsi prediksi positif yang benar dari semua prediksi positif.
+    - Recall (Sensitivity/True Positive Rate): Mengukur proporsi kasus positif yang benar-benar teridentifikasi.
+    - F1-Score: Rata-rata harmonik dari presisi dan recall, memberikan keseimbangan antara keduanya.
+    - Pemilihan metrik ini sangat penting karena dalam prediksi pasar saham, baik false positives (memprediksi harga naik padahal sebenarnya turun, yang dapat menyebabkan kerugian) maupun false negatives (memprediksi harga turun padahal sebenarnya naik, yang berarti kehilangan peluang keuntungan) sama-sama memiliki konsekuensi finansial. Metrik-metrik ini, seperti yang juga ditekankan dalam penelitian tentang analisis sentimen, memungkinkan pengukuran kinerja yang lebih nuansa daripada sekadar akurasi keseluruhan.   
 
 ## Data Understanding
-Dataset yang digunakan untuk proyek ini yaitu “Data Historis ANTM” berisi informasi harian harga saham PT Aneka Tambang Tbk (ANTM) mulai dari bulan Januari 2023 hingga bulan Maret 2025 yang diunduh dari situs Investing.com [3]. Data awal terdiri dari kolom - kolom berikut, yaitu: Tanggal, Terakhir (Close), Pembukaan (Open), Tertinggi (High), Terendah (Low), Vol. (Volume dalam format “M”), dan Perubahan% (Change% sebagai string).
+agian ini memberikan gambaran komprehensif mengenai data yang digunakan dalam proyek, termasuk sumber, struktur, dan karakteristik setiap variabel. Pemahaman yang mendalam terhadap data merupakan fondasi krusial sebelum memulai tahapan pemrosesan dan pemodelan.
+
+Informasi Umum Data dan Sumber
+
+Data yang menjadi dasar analisis dalam proyek ini adalah data historis harga saham PT ANTM Tbk. Data ini diperoleh dari sumber publik dan disajikan dalam format CSV. Dataset mencakup periode waktu yang signifikan, dimulai dari 2 Januari 2014 hingga 30 Desember 2024. Ketersediaan data historis yang panjang ini memungkinkan model untuk mempelajari pola dan tren jangka panjang yang mungkin ada dalam pergerakan harga saham.   
+
+Sumber data spesifik untuk proyek ini adalah file Data Historis PT ANTM Tbk.csv. Penting untuk dicatat bahwa dalam lingkungan komputasi saat ini, meskipun konten file CSV dapat diakses dan diinterpretasikan sebagai teks, sistem tidak memiliki kemampuan untuk secara langsung memprosesnya sebagai file CSV untuk perhitungan statistik deskriptif otomatis atau manipulasi data yang kompleks. Oleh karena itu, analisis data dan persiapan fitur akan dijelaskan secara konseptual, menguraikan langkah-langkah yang akan diambil dalam implementasi nyata. Keterbatasan ini mengarahkan fokus laporan pada metodologi dan kerangka kerja konseptual proyek machine learning, bukan pada presentasi hasil komputasi langsung.
+
+Variabel-variabel pada Dataset
+
+Dataset Data Historis PT ANTM Tbk.csv  terdiri dari beberapa kolom yang merepresentasikan aspek-aspek penting dari perdagangan saham harian: 
+
+| Nama Variabel | Deskripsi | Tipe Data Asli | Tipe Data Setelah Pemrosesan (Diharapkan) |
+| ------------- | --------- | -------------- | ------------------------------------------ |
+| **Tanggal**   | Tanggal perdagangan saham. | String | Datetime |
+| **Terakhir**  | Harga penutupan (last price) saham pada hari perdagangan tersebut. | String | Float |
+| **Pembukaan** | Harga pembukaan (opening price) saham pada hari perdagangan tersebut. | String | Float |
+| **Tertinggi** | Harga tertinggi (highest price) yang dicapai saham pada hari tersebut. | String | Float |
+| **Terendah**  | Harga terendah (lowest price) yang dicapai saham pada hari tersebut. | String | Float |
+| **Vol.**      | Volume perdagangan saham pada hari tersebut. | String | Integer/Float |
+| **Perubahan%**| Persentase perubahan harga saham dari hari sebelumnya. | String | Float |
+
+
 
 ## Sumber Data
 Investing.com, “Aneka Tambang Tbk Historical Data,” 2025. [Online]. Tersedia: https://id.investing.com/equities/aneka-tambang-historical-data
@@ -327,8 +318,3 @@ Interpretasi Hasil
 - Menjelaskan formula metrik dan bagaimana metrik tersebut bekerja.
 
 **---Ini adalah bagian akhir laporan---**
-
-_Catatan:_
-- _Anda dapat menambahkan gambar, kode, atau tabel ke dalam laporan jika diperlukan. Temukan caranya pada contoh dokumen markdown di situs editor [Dillinger](https://dillinger.io/), [Github Guides: Mastering markdown](https://guides.github.com/features/mastering-markdown/), atau sumber lain di internet. Semangat!_
-- Jika terdapat penjelasan yang harus menyertakan code snippet, tuliskan dengan sewajarnya. Tidak perlu menuliskan keseluruhan kode project, cukup bagian yang ingin dijelaskan saja.
-
