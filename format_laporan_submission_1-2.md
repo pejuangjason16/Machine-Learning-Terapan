@@ -114,7 +114,23 @@ Dataset Data Historis PT ANTM Tbk.csv  terdiri dari beberapa kolom yang merepres
 | **Vol.**      | Volume perdagangan saham pada hari tersebut. | String | Integer/Float |
 | **Perubahan%**| Persentase perubahan harga saham dari hari sebelumnya. | String | Float |
 
+### Tabel 1: Variabel-variabel pada Dataset Historis PT ANTM Tbk
 
+### Eksplorasi Data dan Analisis Statistik Deskriptif
+
+Tahap eksplorasi data (EDA) dan analisis statistik deskriptif sangat penting untuk memahami karakteristik data, mengidentifikasi potensi masalah kualitas data, dan merumuskan strategi rekayasa fitur yang efektif. Meskipun tidak dapat dilakukan secara langsung dalam lingkungan ini, langkah-langkah konseptualnya adalah sebagai berikut:
+
+- Pemuatan Data: Data akan dimuat ke dalam struktur data yang sesuai, seperti DataFrame Pandas, untuk memfasilitasi manipulasi dan analisis yang efisien.
+- Pembersihan Data Awal: Proses ini melibatkan penanganan nilai yang hilang (jika ada), yang dapat dilakukan dengan imputasi (misalnya, forward-fill untuk data deret waktu yang berurutan) atau penghapusan baris/kolom jika proporsi nilai hilang sangat kecil. Selain itu, konversi tipe data kolom Tanggal ke format datetime dan kolom Vol. serta Perubahan% dari string (dengan sufiks 'M', 'B', '%') menjadi numerik (float) adalah langkah esensial. Tipe data yang benar sangat krusial untuk memungkinkan operasi matematika dan analisis deret waktu yang akurat. Data volume dan persentase perubahan dalam format string tidak dapat langsung digunakan dalam model numerik.
+- Statistik Deskriptif: Menghitung statistik dasar seperti mean, median, standar deviasi, nilai minimum, dan nilai maksimum untuk kolom harga (Terakhir, Pembukaan, Tertinggi, Terendah) dan volume (Vol.) akan memberikan pemahaman awal tentang distribusi dan rentang nilai data. Ini membantu dalam mengidentifikasi anomali atau pola umum.
+- Visualisasi Data:
+    - Plot deret waktu harga penutupan (Terakhir) akan digunakan untuk mengamati tren jangka panjang, pola musiman, atau anomali signifikan dalam pergerakan harga.
+    - Histogram distribusi Perubahan% akan memberikan wawasan tentang volatilitas harian saham, menunjukkan seberapa sering terjadi kenaikan atau penurunan harga dalam rentang tertentu.
+    - Scatter plot antara Vol. dan Perubahan% dapat membantu mencari korelasi antara volume perdagangan dan perubahan harga.
+- Pembentukan Variabel Target: Untuk masalah klasifikasi prediksi arah pergerakan harga, variabel target biner (Arah_Gerak) akan dibuat dari kolom Perubahan%. Variabel ini akan diberi nilai 1 jika Perubahan% > 0 (mengindikasikan harga naik) dan 0 jika Perubahan% <= 0 (mengindikasikan harga turun atau stagnan). Transformasi ini mengubah masalah regresi (memprediksi nilai harga) menjadi masalah klasifikasi (memprediksi arah), yang seringkali lebih praktis untuk pengambilan keputusan investasi harian dan lebih sesuai dengan fokus klasifikasi yang relevan dengan penelitian yang tersedia.
+- Identifikasi Outlier: Menggunakan metode statistik atau visualisasi, outlier dalam data (misalnya, lonjakan harga atau volume yang ekstrem) akan dideteksi. Outlier ini perlu ditangani dengan hati-hati karena dapat memengaruhi kinerja model secara negatif jika tidak ditangani dengan tepat.
+
+Tahap pemahaman data ini merupakan fondasi yang kuat untuk tahapan selanjutnya, memastikan bahwa data siap untuk diproses dan diinterpretasikan dengan benar dalam konteks pemodelan machine learning.
 
 ## Sumber Data
 Investing.com, “Aneka Tambang Tbk Historical Data,” 2025. [Online]. Tersedia: https://id.investing.com/equities/aneka-tambang-historical-data
@@ -161,158 +177,108 @@ Selanjutnya uraikanlah seluruh variabel atau fitur pada data. Sebagai contoh:
 - Melakukan beberapa tahapan yang diperlukan untuk memahami data, contohnya teknik visualisasi data atau exploratory data analysis.
 
 ## Data Preparation
-Pada bagian ini Anda menerapkan dan menyebutkan teknik data preparation yang dilakukan. Teknik yang digunakan pada notebook dan laporan harus berurutan.
+Tahap persiapan data adalah fase krusial dalam siklus hidup proyek machine learning, di mana data mentah diubah menjadi format yang sesuai dan berkualitas tinggi untuk pemodelan. Setiap teknik yang diterapkan memiliki justifikasi yang jelas, bertujuan untuk memaksimalkan kinerja dan keandalan model.
 
-1. Import Libraries dan Load Data
-2. Rename Kolom
-3. Konversi Kolom Date ke Datetime dan Urutkan
-   - Alasan:
-    Format datetime penting untuk operasi time-series (filter, fitur rolling, split), dan urutan menaik menjamin kronologi.
-4. Pembersihan Kolom Volume → VolumeNumeric
-   - Alasan:
-    Mengubah format string (“32,28M”) ke float (lembar saham) agar bisa diproses model.
-5. Pembersihan Kolom ChangePercent → ChangePercentNumeric
-   - Alasan:
-    Mengubah string seperti “−0,91%” menjadi numerik (−0.91) untuk analisis dan pemodelan.
-6. Cek Missing Values & Duplikasi, Hapus Bila Ada
-7. Feature Engineering – Hitung Return Harian
-8. Buat Label Klasifikasi (“Up”/“Down”)
-9. Feature Selection Awal
-10. (Opsional) Standardisasi untuk Model Peka Skala
-11. Train/Test Split Berbasis Waktu
+### Teknik Data Preparation yang Diterapkan
+Proses persiapan data akan melibatkan serangkaian langkah yang terurut dan terjustifikasi:
 
+- Konversi Tipe Data:
+    - Kolom Tanggal akan dikonversi dari format string ke objek datetime. Ini sangat penting untuk memungkinkan operasi deret waktu, seperti pengurutan kronologis dan pembuatan fitur berbasis waktu.
+    - Kolom Vol. dan Perubahan% yang saat ini dalam format string (dengan sufiks seperti 'M' untuk juta, 'B' untuk miliar, dan '%' untuk persentase) akan dikonversi menjadi tipe data numerik (float).
+    - Justifikasi: Tipe data yang benar adalah prasyarat fundamental untuk melakukan operasi matematika dan analisis statistik. Data volume dan persentase perubahan yang masih dalam format string tidak dapat diproses secara numerik oleh algoritma machine learning, sehingga konversi ini mutlak diperlukan untuk mengintegrasikannya ke dalam model.
+- Penanganan Nilai Hilang (Missing Values):
+    - Meskipun data yang disediakan dalam proyek ini tampak lengkap, dalam skenario data historis yang lebih besar atau dari sumber yang berbeda, nilai hilang seringkali menjadi masalah. Jika nilai hilang terdeteksi, strategi penanganannya akan ditentukan setelah eksplorasi data. Pendekatan umum untuk data deret waktu meliputi forward-fill (mengisi nilai hilang dengan nilai terakhir yang diketahui) atau penghapusan baris/kolom jika proporsi nilai hilang sangat kecil dan tidak berdampak signifikan pada dataset.
+    - Justifikasi: Nilai hilang dapat menyebabkan error pada model selama pelatihan atau menghasilkan bias yang tidak diinginkan dalam proses pembelajaran, yang pada akhirnya dapat menurunkan kinerja model.
+- Pembentukan Fitur (Feature Engineering):
+    - Ini adalah langkah kunci untuk meningkatkan informasi yang dapat diekstrak dari data mentah.
+        - Lagged Features: Fitur-fitur baru akan dibuat dari harga penutupan (Terakhir), volume (Vol.), dan persentase perubahan (Perubahan%) dari hari-hari perdagangan sebelumnya (misalnya, Terakhir_t-1, Vol_t-1, Perubahan%_t-1). Ini esensial untuk menangkap dependensi temporal dan dinamika pasar dari waktu ke waktu.
+        - Moving Averages: Rata-rata bergerak sederhana atau eksponensial (misalnya, rata-rata 5-hari atau 10-hari) dari harga akan dihitung. Indikator ini membantu mengidentifikasi tren jangka pendek dan menghaluskan fluktuasi harga harian.
+        - Indikator Teknis Lainnya: Meskipun tidak secara eksplisit ada dalam data mentah, indikator teknis seperti Relative Strength Index (RSI) atau Moving Average Convergence Divergence (MACD) dapat dihitung dari fitur harga yang ada. Indikator-indikator ini memberikan sinyal momentum dan kondisi overbought/oversold yang relevan dalam analisis pasar saham.
+    - Justifikasi: Fitur-fitur ini membantu model memahami konteks historis dan dinamika pasar yang lebih dalam. Dengan mengubah data mentah menjadi representasi yang lebih informatif, model dapat belajar pola yang lebih kompleks dan menghasilkan prediksi yang lebih akurat.
+- Pembentukan Variabel Target:
+    - Variabel target biner, Arah_Gerak, akan dibuat berdasarkan kolom Perubahan%. Jika Perubahan% > 0, Arah_Gerak akan diberi nilai 1 (harga naik); jika Perubahan% <= 0, Arah_Gerak akan diberi nilai 0 (harga turun atau stagnan).
+    - Justifikasi: Mengubah masalah prediksi nilai harga (regresi) menjadi klasifikasi arah pergerakan harga adalah pendekatan yang lebih praktis untuk mendukung keputusan investasi harian. Ini juga selaras dengan fokus pada tugas klasifikasi yang relevan dengan penelitian yang tersedia, seperti analisis sentimen.   
+- Pembagian Data:
+    - Data akan dibagi menjadi set pelatihan (training set), set validasi (validation set), dan set pengujian (test set) secara kronologis. Pembagian ini penting untuk data deret waktu untuk mencegah data leakage, yaitu situasi di mana informasi masa depan bocor ke dalam data pelatihan. Misalnya, 80% data awal akan digunakan untuk pelatihan, 10% berikutnya untuk validasi, dan 10% terakhir untuk pengujian.
+    - Justifikasi: Pembagian kronologis memastikan bahwa model hanya dilatih pada informasi yang tersedia di masa lalu, mereplikasi skenario dunia nyata di mana prediksi dibuat berdasarkan data historis yang tersedia.
+- Normalisasi/Standardisasi Fitur:
+    - Fitur-fitur numerik, seperti harga, volume, dan persentase perubahan (termasuk fitur yang direkayasa), akan dinormalisasi atau distandardisasi. Metode umum yang digunakan adalah StandardScaler (mengubah data menjadi memiliki rata-rata 0 dan standar deviasi 1) atau MinMaxScaler (menskalakan data ke rentang tertentu, misalnya 0 hingga 1).
+    - Justifikasi: Banyak algoritma machine learning, terutama yang berbasis jarak atau gradien, sangat sensitif terhadap skala fitur. Normalisasi membantu mencegah fitur dengan rentang nilai yang besar mendominasi proses pembelajaran model, mempercepat konvergensi algoritma, dan secara signifikan meningkatkan kinerja model.
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan proses data preparation yang dilakukan
-- Menjelaskan alasan mengapa diperlukan tahapan data preparation tersebut.
+Dengan menerapkan teknik-teknik persiapan data ini secara cermat, data akan siap untuk tahapan pemodelan, memastikan bahwa model dapat belajar dari representasi data yang paling optimal.
 
 ## Modeling
-Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyelesaikan permasalahan. Anda perlu menjelaskan tahapan dan parameter yang digunakan pada proses pemodelan.
+Tahapan pemodelan adalah inti dari proyek machine learning, di mana algoritma dipilih, dikonfigurasi, dan dilatih untuk menyelesaikan masalah yang telah didefinisikan. Pemilihan algoritma yang tepat dan optimasi parameternya sangat krusial untuk mencapai kinerja prediksi yang diinginkan.
 
-Berikut tahapan pemodelan klasifikasi biner (“Up”/“Down”) menggunakan dua algoritma: Logistic Regression dan Random Forest. Kedua model akan dituning dengan hyperparameter grid search, lalu dibandingkan performanya.
+### Pemilihan Model Machine Learning
 
-1. Logistic Regression (Baseline & Hyperparameter Tuning)
+Berdasarkan sifat masalah sebagai tugas klasifikasi biner (memprediksi apakah harga saham akan naik atau turun) dan karakteristik data deret waktu, beberapa algoritma machine learning yang relevan akan dipertimbangkan dan diimplementasikan:
 
-1.1. Deskripsi Singkat
-Model linier yang mempelajari probabilitas P(Y=1|X) melalui fungsi logit (sigmoid).
-Koefisien dapat diinterpretasikan sebagai log‐odds ratio.
-Cepat dilatih, cocok sebagai baseline.
+- Logistic Regression:
+    - Kelebihan: Model ini relatif sederhana, cepat untuk dilatih, dan hasil prediksinya mudah diinterpretasikan dalam bentuk probabilitas. Algoritma ini berfungsi sebagai baseline yang sangat baik untuk membandingkan kinerja model yang lebih kompleks.   
+    - Kekurangan: Asumsi utama dari Logistic Regression adalah adanya hubungan linear antara fitur input dan log-odds dari variabel target. Hal ini membuatnya kurang efektif dalam menangkap pola non-linear yang kompleks dan interaksi antar fitur yang sering ditemukan dalam data pasar saham yang dinamis.
+- Support Vector Machine (SVM):
+    - Kelebihan: SVM sangat efektif dalam ruang berdimensi tinggi dan memiliki kemampuan untuk menangani hubungan non-linear melalui penggunaan kernel trick. Ini memungkinkan SVM untuk menemukan hyperplane optimal yang memisahkan kelas-kelas dengan margin terbesar, sehingga menghasilkan kemampuan generalisasi yang baik, bahkan pada data yang tidak terlihat sebelumnya. SVM sangat cocok untuk masalah klasifikasi biner.   
+    - Kekurangan: Kinerja SVM sangat sensitif terhadap penskalaan fitur, sehingga normalisasi data menjadi prasyarat. Selain itu, pemilihan hyperparameter yang tepat (terutama jenis kernel dan parameter regularisasi C) memerlukan tuning yang cermat. SVM juga cenderung kurang efisien secara komputasi untuk dataset yang sangat besar.
+- Random Forest:
+    - Kelebihan: Random Forest adalah metode ensemble yang kuat, dibangun dari banyak decision tree individu. Algoritma ini mampu menangani hubungan non-linear dan interaksi fitur secara alami. Keunggulan utamanya adalah ketahanannya terhadap overfitting (dibandingkan dengan decision tree tunggal) dan kemampuannya untuk memberikan estimasi pentingnya fitur, yang dapat memberikan wawasan tentang faktor-faktor pendorong prediksi. Random Forest juga cenderung berkinerja baik pada data dengan banyak fitur.   
+    - Kekurangan: Salah satu kelemahan utama Random Forest adalah sifatnya yang kurang interpretable atau sering disebut sebagai black-box model, karena melibatkan kombinasi dari banyak pohon keputusan. Meskipun demikian, ini adalah kompromi yang sering diterima mengingat kinerja prediktifnya yang kuat. Selain itu, model ini bisa menjadi intensif secara komputasi dan memori jika jumlah pohon yang digunakan sangat banyak atau dataset sangat besar.
 
-1.2. Pembuatan Model Awal (Baseline)
+### Tahapan Pemodelan dan Konfigurasi Parameter
+Setelah pemilihan algoritma, tahapan pemodelan akan melibatkan langkah-langkah berikut:
 
-1.3. Kelebihan & Kekurangan Logistic Regression
+- Inisialisasi Model: Setiap algoritma yang dipilih (Logistic Regression, SVM, Random Forest) akan diinisialisasi, awalnya dengan parameter default atau parameter awal yang umum digunakan.
+- Pelatihan Model Awal: Model-model ini akan dilatih menggunakan set pelatihan yang telah disiapkan pada tahap persiapan data.
+- Evaluasi Baseline: Kinerja awal setiap model akan dievaluasi pada set validasi untuk mendapatkan gambaran baseline performance. Ini membantu mengidentifikasi model mana yang memiliki potensi lebih besar sebelum optimasi lebih lanjut.
 
-Kelebihan:
-- Interpretabilitas tinggi (koefisien log‐odds).
-- Cepat dan ringan komputasi.
-- Cenderung tidak overfit jika fitur tidak terlalu banyak.
+### Proses Peningkatan Model atau Pemilihan Model Terbaik
+Untuk memaksimalkan potensi kinerja model dan memastikan keandalannya, proses optimasi dan pemilihan model terbaik akan dilakukan:
 
-Kekurangan:
-- Hanya memisahkan secara linier—kurang optimal untuk pola non-linier.
-- Rentan multicollinearity (fitur berkorelasi tinggi membuat koefisien tidak stabil).
-- Performa menurun jika distribusi kelas tidak seimbang.
-
-1.4. Hyperparameter Tuning Logistic Regression
-    1. Grid Parameter
-    2. GridSearchCV
-    3. Retrain dengan Parameter Terbaik
-- Hasil Hipotesis (Contoh):
-    Accuracy ≈ 0.63
-    Precision ≈ 0.62
-    Recall ≈ 0.64
-    F1-Score ≈ 0.63
-    AUC-ROC ≈ 0.66
-
-2. Random Forest Classifier
-
-2.1. Deskripsi Singkat
-    - Model ensemble tree-based yang membangun banyak pohon keputusan (bagging).
-    - Setiap pohon dilatih pada subset data dan subset fitur.
-    - Prediksi akhir diambil dari voting (kelas mayoritas).
-
-2.2. Pembuatan Model Awal (Baseline)
-
-2.3. Kelebihan & Kekurangan Random Forest
-- Kelebihan:
-    - Menangkap pola non-linier dan interaksi fitur.
-    - Tahan terhadap multicollinearity dan outlier.
-    - Tidak perlu normalisasi fitur.
-
-- Kekurangan:
-    - Lebih lambat dalam pelatihan dan prediksi (tergantung jumlah pohon).
-    - Kurang interpretabel—hanya feature importance saja.
-    - Berisiko overfitting jika pohon terlalu dalam (max_depth terlalu besar).
-
-2.4. Hyperparameter Tuning Random Forest
-    1. Grid Parameter
-    2. GridSearchCV
-    3. Retrain dengan Parameter Terbaik
-- Hasil Hipotesis (Contoh):
-    Accuracy ≈ 0.67
-    Precision ≈ 0.65
-    Recall ≈ 0.70
-    F1-Score ≈ 0.68
-    AUC-ROC ≈ 0.72
-
-Pemilihan Model Terbaik
-- F1-Score: Random Forest Tuned (0,68) > Logistic Regression Tuned (0,63).
-- AUC-ROC: Random Forest Tuned (0,72) > Logistic Regression Tuned (0,66).
-- Konsistensi CV vs Test: Jika skor CV (misalnya 0,68) mendekati skor test (0,67), model stabil.
-- Kesimpulan: Random Forest Tuned dipilih sebagai model solusi akhir karena performa yang unggul pada metrik utama (F1, AUC) dan kemampuannya menangkap pola non-linier.
+- Hyperparameter Tuning:
+    - Setiap algoritma memiliki hyperparameter yang memengaruhi proses pembelajarannya dan, pada akhirnya, kinerjanya. Teknik seperti Grid Search atau Randomized Search yang dikombinasikan dengan Cross-Validation akan diterapkan untuk menemukan kombinasi hyperparameter optimal untuk setiap model.
+    - Contoh hyperparameter yang akan disetel:
+        - Logistic Regression: Kekuatan regularisasi (C) untuk mengontrol overfitting.
+        - SVM: Jenis kernel (linear, RBF), parameter regularisasi C, dan gamma (untuk kernel RBF) yang memengaruhi bentuk hyperplane dan sensitivitas model terhadap titik data.
+        - Random Forest: Jumlah pohon dalam ensemble (n_estimators), kedalaman maksimum setiap pohon (max_depth), dan jumlah sampel minimum yang diperlukan untuk membagi sebuah node (min_samples_leaf).
+    - Justifikasi: Hyperparameter tuning adalah proses iteratif yang sangat penting untuk memaksimalkan potensi kinerja model. Tanpa tuning yang tepat, model dapat mengalami underfitting (tidak cukup kompleks untuk menangkap pola dalam data) atau overfitting (terlalu kompleks dan hanya menghafal data pelatihan, sehingga buruk dalam generalisasi ke data baru). Proses ini bertujuan untuk menemukan konfigurasi model yang paling sesuai dengan karakteristik data dan masalah yang dihadapi.
+- Pemilihan Model Terbaik:
+    - Setelah hyperparameter tuning selesai untuk setiap algoritma, kinerja model yang telah dioptimalkan akan dibandingkan secara ketat menggunakan metrik evaluasi yang telah ditentukan (Akurasi, Presisi, Recall, F1-Score) pada set validasi.
+    - Justifikasi Pemilihan Model Terbaik: Model dengan F1-Score tertinggi akan dipilih sebagai model terbaik. F1-Score dipilih karena memberikan keseimbangan yang baik antara Presisi dan Recall. Dalam konteks prediksi pasar saham, di mana baik false positives (memprediksi kenaikan padahal turun, yang dapat menyebabkan kerugian) maupun false negatives (memprediksi penurunan padahal naik, yang berarti kehilangan peluang) sama-sama memiliki konsekuensi finansial, F1-Score adalah metrik yang sangat relevan. Metrik ini memastikan bahwa model tidak hanya akurat dalam prediksi positifnya, tetapi juga cukup komprehensif dalam menangkap sebagian besar pergerakan harga ke atas yang sebenarnya. Model yang terpilih ini kemudian akan dievaluasi secara final pada set pengujian yang belum pernah dilihat sebelumnya untuk mendapatkan estimasi kinerja yang paling tidak bias.
 
 ## Evaluation
-Pada bagian ini anda perlu menyebutkan metrik evaluasi yang digunakan. Lalu anda perlu menjelaskan hasil proyek berdasarkan metrik evaluasi yang digunakan.
+Bagian evaluasi ini menyajikan metrik yang digunakan untuk mengukur kinerja model machine learning dan menginterpretasikan hasilnya dalam konteks bisnis. Pemilihan metrik yang tepat dan pemahaman mendalam tentang implikasinya sangat penting untuk menilai keandalan dan utilitas model.
 
-Metrik evaluasi yang digunakan diukur pada data uji untuk memastikan model mampu memprediksi arah harga saham ANTM (“Up”/“Down”) dengan baik.
+### Metrik Evaluasi yang Digunakan
+Untuk proyek klasifikasi prediksi arah pergerakan harga saham ini, metrik evaluasi yang akan digunakan adalah:
+- Akurasi (Accuracy)
+- Presisi (Precision)
+- Recall (Sensitivity/True Positive Rate)
+- F1-Score
 
-1. Accuracy (Akurasi)
-Definisi:
-Persentase prediksi yang benar dibanding total sampel.
-Interpretasi:
-Jika model memprediksi 67% hari secara benar, maka akurasi = 0,67.
+Metrik-metrik ini dipilih karena secara kolektif memberikan gambaran yang komprehensif tentang kinerja model dalam tugas klasifikasi biner, khususnya dalam konteks di mana keseimbangan antara berbagai jenis kesalahan prediksi memiliki implikasi finansial yang signifikan.
 
-2. Precision (Presisi)
-Definisi:
-Proporsi prediksi “Up” yang benar-benar “Up.”
-Interpretasi:
-Dari semua sinyal “Up” yang dihasilkan, berapa persen benar. Penting untuk mengurangi False Positive (FP) yang menyebabkan beli saat harga turun.
+### Penjelasan Mengenai Metrik yang Digunakan
+Memahami setiap metrik adalah kunci untuk menginterpretasikan hasil evaluasi model secara benar:
 
-3. Recall (Sensitivitas)
-Definisi:
-Proporsi hari “Up” yang berhasil diprediksi sebagai “Up.”
-Interpretasi:
-Dari semua hari sebenarnya “Up,” berapa persen terdeteksi model. Mengurangi False Negative (FN) agar peluang keuntungan tidak terlewat.
+- Akurasi (Accuracy):
+    - Penjelasan: Akurasi mengukur proporsi total prediksi yang benar (baik prediksi positif yang benar maupun prediksi negatif yang benar) dari keseluruhan jumlah observasi. Ini adalah metrik yang paling intuitif dan sering digunakan sebagai indikator kinerja umum.
+    - Formula: (True Positives + True Negatives) / (True Positives + True Negatives + False Positives + False Negatives)
+    - Cara Kerja: Metrik ini memberikan gambaran seberapa sering model membuat prediksi yang tepat. Namun, untuk dataset yang tidak seimbang (misalnya, jumlah hari harga stagnan/turun jauh lebih banyak daripada hari harga naik), akurasi saja bisa menyesatkan. Model yang hanya memprediksi kelas mayoritas bisa menunjukkan akurasi tinggi meskipun tidak berguna.
 
-4. F1-Score
-Definisi:
-Harmonik rata-rata antara Precision dan Recall.
-Interpretasi:
-Memberikan keseimbangan antara presisi dan sensitivitas. Digunakan ketika distribusi kelas tidak sepenuhnya seimbang.
+- Presisi (Precision):
+    - Penjelasan: Presisi mengukur proporsi prediksi positif yang benar dari semua instance yang diprediksi sebagai positif oleh model. Dalam konteks proyek ini, presisi menunjukkan seberapa sering model benar ketika memprediksi bahwa harga saham akan naik.
+    - Formula: True Positives / (True Positives + False Positives)
+    - Cara Kerja: Presisi sangat penting ketika biaya dari false positive (yaitu, model memprediksi harga akan naik, tetapi ternyata turun, yang dapat menyebabkan kerugian investasi jika investor membeli berdasarkan sinyal palsu) sangat tinggi. Investor yang konservatif mungkin lebih menghargai presisi tinggi.
 
-5. AUC-ROC
-Definisi:
-Area di bawah kurva ROC (Receiver Operating Characteristic), yaitu plot TPR vs FPR pada berbagai threshold.
-Interpretasi:
-AUC = 0,5 → performa sama dengan tebakan acak. AUC mendekati 1 → kemampuan pemisahan kelas sangat baik. Cocok untuk memahami performa di seluruh threshold.
+- Recall (Sensitivity/True Positive Rate):
+    - Penjelasan: Recall mengukur proporsi instance positif yang benar-benar diidentifikasi oleh model dari semua instance positif yang sebenarnya ada dalam dataset. Dalam konteks ini, recall menunjukkan seberapa baik model menangkap semua kejadian di mana harga saham benar-benar naik.
+    - Formula: True Positives / (True Positives + False Negatives)
+    - Cara Kerja: Recall penting ketika biaya dari false negative (yaitu, model memprediksi harga akan turun atau stagnan, tetapi ternyata naik, yang berarti kehilangan peluang keuntungan) sangat tinggi. Investor yang ingin memaksimalkan peluang keuntungan mungkin lebih menghargai recall tinggi.
 
-6. Confusion Matrix
-Struktur:
-
-Interpretasi:
-Memberikan detail FP, FN, TP, TN sehingga kita dapat menghitung metrik di atas dan memahami jenis kesalahan.
-
-Sebagai contoh, Anda memiih kasus klasifikasi dan menggunakan metrik **akurasi, precision, recall, dan F1 score**. Jelaskan mengenai beberapa hal berikut:
-- Penjelasan mengenai metrik yang digunakan
-- Menjelaskan hasil proyek berdasarkan metrik evaluasi
-
-Ingatlah, metrik evaluasi yang digunakan harus sesuai dengan konteks data, problem statement, dan solusi yang diinginkan.
-
-Interpretasi Hasil
-- Accuracy 0,76: Model benar memprediksi 76% hari.
-- Precision 0,75: Dari semua sinyal “Up,” 75% benar naik → mengurangi sinyal palsu (kerugian).
-- Recall 0,78: Dari semua hari “Up,” model mendeteksi 78% → peluang keuntungan tidak banyak terlewat.
-- F1-Score 0,77: Harmonik antara presisi dan sensitivitas, menunjukkan keseimbangan baik.
-- AUC-ROC 0,82: Model cukup kuat memisahkan kelas “Up”/“Down” di berbagai threshold.
+- F1-Score:
+    - Penjelasan: F1-Score adalah rata-rata harmonik dari Presisi dan Recall. Ini adalah metrik yang lebih seimbang, terutama ketika ada ketidakseimbangan kelas atau ketika Presisi dan Recall sama-sama penting dalam konteks masalah.
+    - Formula: 2 * (Presisi * Recall) / (Presisi + Recall)
+    - Cara Kerja: F1-Score memberikan skor tunggal yang menyeimbangkan kemampuan model untuk tidak membuat prediksi positif yang salah (Presisi) dan kemampuannya untuk menemukan semua instance positif (Recall). Dalam prediksi saham, di mana baik kerugian akibat prediksi salah maupun hilangnya peluang sama-sama merugikan, F1-Score adalah metrik yang sangat relevan dan seringkali menjadi pilihan utama untuk model klasifikasi.
 
 **Rubrik/Kriteria Tambahan (Opsional)**: 
 - Menjelaskan formula metrik dan bagaimana metrik tersebut bekerja.
