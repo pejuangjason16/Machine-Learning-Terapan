@@ -71,10 +71,10 @@ Sejalan dengan pernyataan masalah yang telah diidentifikasi, proyek ini menetapk
 **Rubrik/Kriteria Tambahan (Opsional)**:
 - Menambahkan bagian “Solution Statement” yang menguraikan cara untuk meraih goals. Bagian ini dibuat dengan ketentuan sebagai berikut: 
 
-**Solution statements
+**Solution statements**
     Untuk mencapai tujuan prediksi arah pergerakan harga saham, beberapa pendekatan machine learning akan digunakan untuk diimplementasikan dan dibandingkan. 
 
-**Pendekatan Solusi yang Diajukan:
+**Pendekatan Solusi yang Diajukan**:
 
 Akan digunakan dua atau lebih algoritma klasifikasi machine learning untuk diimplementasikan dan kinerjanya akan dibandingkan, guna untuk mengatasi masalah klasifikasi biner (harga naik atau turun). Kandidat algoritma dipilih berdasarkan relevansi dan efektivitasnya dalam tugas klasifikasi:
 
@@ -84,7 +84,7 @@ Akan digunakan dua atau lebih algoritma klasifikasi machine learning untuk diimp
 
     Setiap model yang dipilih akan menjalani proses hyperparameter tuning yang sistematis untuk mengoptimalkan kinerjanya. Teknik seperti Grid Search atau Randomized Search yang dikombinasikan dengan Cross-Validation akan diterapkan untuk menemukan kombinasi hyperparameter terbaik. Setelah proses tuning, model dengan kinerja terbaik akan dipilih sebagai solusi utama.
 
-**Metrik Kuantitatif untuk Pengukuran Solusi:
+**Metrik Kuantitatif untuk Pengukuran Solusi***:
 
 Keberhasilan solusi akan dilihat melalui pengukuran yang sudah dilakukan secara kuantitatif menggunakan metrik evaluasi klasifikasi standar. Nilai - nilai yang diperoleh dari metrik ini akan memberikan gambaran mengenai kemampuan model dalam memprediksi kenaikan dan penurunan harga saham secara seimbang:
 
