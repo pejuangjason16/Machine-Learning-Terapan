@@ -71,26 +71,27 @@ Sejalan dengan pernyataan masalah yang telah diidentifikasi, proyek ini menetapk
 **Rubrik/Kriteria Tambahan (Opsional)**:
 - Menambahkan bagian “Solution Statement” yang menguraikan cara untuk meraih goals. Bagian ini dibuat dengan ketentuan sebagai berikut: 
 
-    ### Solution statements
+**Solution statements
     Untuk mencapai tujuan prediksi arah pergerakan harga saham, beberapa pendekatan machine learning akan digunakan untuk diimplementasikan dan dibandingkan. 
 
-    ### Pendekatan Solusi yang Diajukan:
+**Pendekatan Solusi yang Diajukan:
 
-    Akan digunakan dua atau lebih algoritma klasifikasi machine learning untuk diimplementasikan dan kinerjanya akan dibandingkan, guna untuk mengatasi masalah klasifikasi biner (harga naik atau turun). Kandidat algoritma dipilih berdasarkan relevansi dan efektivitasnya dalam tugas klasifikasi:
+Akan digunakan dua atau lebih algoritma klasifikasi machine learning untuk diimplementasikan dan kinerjanya akan dibandingkan, guna untuk mengatasi masalah klasifikasi biner (harga naik atau turun). Kandidat algoritma dipilih berdasarkan relevansi dan efektivitasnya dalam tugas klasifikasi:
 
-    - Logistic Regression: Algoritma ini akan digunakan sebagai baseline model. Kelebihan dari algoritma ini terletak pada kesederhanaan dan kecepatan pelatihannya, juga mampu untuk menginterpretasikan hasil dengan mudah. Meskipun begitu, terdapat keterbatasan pada model ini dimana asumsi linearitas hubungan antara fitur dan probabilitas logaritmik variabel target mungkin tidak sepenuhnya sesuai untuk menangkap pola non-linear kompleks dalam data saham.   
-    - Support Vector Machines (SVM): SVM memiliki tingkat efektivitas yang cukup baik dalam ruang berdimensi tinggi dan memiliki kemampuan yang cukup mumpuni untuk menangani hubungan non-linear melalui penggunaan kernel trick. Model ini mampu melakukan generalisasi dengan cukup baik, sehingga bisa menjadi salah satu pilihan yterbaik untuk masalah klasifikasi biner seperti prediksi arah harga saham. Perlu diperhatikan SVM sensitif terhadap penskalaan fitur dan membutuhkan hyperparameter tuning yang cermat untuk mencapai kinerjanya yang paling optimal.   
-    - Random Forest: Sebagai metode ensemble yang kuat, Random Forest mampu menangani hubungan non-linear dan interaksi fitur secara efektif. Perlu diperhatikan bahwa algoritma ini kurang sensitif terhadap overfitting dibandingkan decision tree tunggal dan juga mampu memberikan estimasi pentingnya fitur, yang berguna untuk memperdalam pemahaman data. Kekurangannya lebih sulit untuk diinterpretasikan dibandingkan regresi logistik, dan dapat menjadi intensif secara komputasi untuk dataset yang sangat besar atau jumlah pohon yang banyak.   
+- Logistic Regression: Algoritma ini akan digunakan sebagai baseline model. Kelebihan dari algoritma ini terletak pada kesederhanaan dan kecepatan pelatihannya, juga mampu untuk menginterpretasikan hasil dengan mudah. Meskipun begitu, terdapat keterbatasan pada model ini dimana asumsi linearitas hubungan antara fitur dan probabilitas logaritmik variabel target mungkin tidak sepenuhnya sesuai untuk menangkap pola non-linear kompleks dalam data saham.   
+- Support Vector Machines (SVM): SVM memiliki tingkat efektivitas yang cukup baik dalam ruang berdimensi tinggi dan memiliki kemampuan yang cukup mumpuni untuk menangani hubungan non-linear melalui penggunaan kernel trick. Model ini mampu melakukan generalisasi dengan cukup baik, sehingga bisa menjadi salah satu pilihan yterbaik untuk masalah klasifikasi biner seperti prediksi arah harga saham. Perlu diperhatikan SVM sensitif terhadap penskalaan fitur dan membutuhkan hyperparameter tuning yang cermat untuk mencapai kinerjanya yang paling optimal.   
+- Random Forest: Sebagai metode ensemble yang kuat, Random Forest mampu menangani hubungan non-linear dan interaksi fitur secara efektif. Perlu diperhatikan bahwa algoritma ini kurang sensitif terhadap overfitting dibandingkan decision tree tunggal dan juga mampu memberikan estimasi pentingnya fitur, yang berguna untuk memperdalam pemahaman data. Kekurangannya lebih sulit untuk diinterpretasikan dibandingkan regresi logistik, dan dapat menjadi intensif secara komputasi untuk dataset yang sangat besar atau jumlah pohon yang banyak.
+
     Setiap model yang dipilih akan menjalani proses hyperparameter tuning yang sistematis untuk mengoptimalkan kinerjanya. Teknik seperti Grid Search atau Randomized Search yang dikombinasikan dengan Cross-Validation akan diterapkan untuk menemukan kombinasi hyperparameter terbaik. Setelah proses tuning, model dengan kinerja terbaik akan dipilih sebagai solusi utama.
 
-    ### Metrik Kuantitatif untuk Pengukuran Solusi:
+**Metrik Kuantitatif untuk Pengukuran Solusi:
 
-    Keberhasilan solusi akan dilihat melalui pengukuran yang sudah dilakukan secara kuantitatif menggunakan metrik evaluasi klasifikasi standar. Nilai - nilai yang diperoleh dari metrik ini akan memberikan gambaran mengenai kemampuan model dalam memprediksi kenaikan dan penurunan harga saham secara seimbang:
+Keberhasilan solusi akan dilihat melalui pengukuran yang sudah dilakukan secara kuantitatif menggunakan metrik evaluasi klasifikasi standar. Nilai - nilai yang diperoleh dari metrik ini akan memberikan gambaran mengenai kemampuan model dalam memprediksi kenaikan dan penurunan harga saham secara seimbang:
 
-    - Akurasi (Accuracy): Mengukur proporsi prediksi yang benar dari total prediksi.
-    - Presisi (Precision): Mengukur proporsi prediksi positif yang benar dari semua prediksi positif.
-    - Recall (Sensitivity/True Positive Rate): Mengukur proporsi kasus positif yang benar-benar teridentifikasi.
-    - F1-Score: Rata-rata harmonik dari presisi dan recall, memberikan keseimbangan antara keduanya.
+- Akurasi (Accuracy): Mengukur proporsi prediksi yang benar dari total prediksi.
+- Presisi (Precision): Mengukur proporsi prediksi positif yang benar dari semua prediksi positif.
+- Recall (Sensitivity/True Positive Rate): Mengukur proporsi kasus positif yang benar-benar teridentifikasi.
+- F1-Score: Rata-rata harmonik dari presisi dan recall, memberikan keseimbangan antara keduanya.
   
     Pemilihan metrik ini sangat penting karena dalam prediksi pasar saham, baik false positives (memprediksi harga naik padahal sebenarnya turun, yang dapat menyebabkan kerugian) maupun false negatives (memprediksi harga turun padahal sebenarnya naik, yang berarti kehilangan peluang keuntungan) sama-sama memiliki konsekuensi finansial. Metrik-metrik ini, seperti yang juga ditekankan dalam penelitian tentang analisis sentimen, memungkinkan pengukuran kinerja yang lebih nuansa daripada sekadar akurasi keseluruhan.   
 
@@ -115,7 +116,7 @@ Dataset Data Historis PT ANTM Tbk.csv  terdiri dari beberapa kolom yang merepres
 | **Vol.**      | Volume perdagangan saham pada hari tersebut. | String | Integer/Float |
 | **Perubahan%**| Persentase perubahan harga saham dari hari sebelumnya. | String | Float |
 
-### Tabel 1: Variabel-variabel pada Dataset Historis PT ANTM Tbk
+*** Tabel 1: Variabel-variabel pada Dataset Historis PT ANTM Tbk
 
 ### Eksplorasi Data dan Analisis Statistik Deskriptif
 
