@@ -27,8 +27,8 @@ Langkah-langkah penyelesaiannya:
 - Pembersihan data (missing values, format tanggal, konversi harga).
 - Konversi kolom numerik (misalnya kolom harga dalam format lokal dengan koma menjadi float).
 2. Analisis Statistik dan Visualisasi:
-- Tren umum, volatilitas harian, pergerakan rata-rata (MA), volume transaksi.
-- Korelasi antar variabel: harga pembukaan, penutupan, tertinggi, terendah, volume.
+- Melihat tren umum, volatilitas harian, pergerakan rata-rata (MA), volume transaksi.
+- Melihat korelasi antar variabel: harga pembukaan, penutupan, tertinggi, terendah, volume.
 3. Pemodelan Prediktif:
 - Menggunakan model time-series seperti ARIMA, Prophet, atau LSTM (untuk prediksi jangka pendek).
 - Evaluasi model menggunakan MAE, RMSE, atau MAPE.
@@ -44,63 +44,64 @@ Langkah-langkah penyelesaiannya:
 
 Bagian ini menguraikan klarifikasi masalah bisnis yang ingin diselesaikan melalui proyek machine learning ini, menjabarkan pernyataan masalah, tujuan, dan usulan solusi yang terukur.
 
+Bagian laporan ini mencakup:
+
 ### Problem Statements
 
 Pergerakan harga saham di pasar modal adalah fenomena yang sangat kompleks, dipengaruhi oleh interaksi berbagai faktor yang seringkali tidak linear dan sulit diprediksi. Keterbatasan metode analisis tradisional dalam menangkap seluruh nuansa ini memunculkan kebutuhan akan pendekatan yang lebih canggih. Berdasarkan konteks ini, proyek ini merumuskan beberapa pernyataan masalah utama:
 
 - Pernyataan Masalah 1: Bagaimana mengidentifikasi pola dan tren tersembunyi dalam data harga saham historis PT ANTM Tbk untuk memprediksi arah pergerakan harga harian?
-Fluktuasi harga saham seringkali dipengaruhi oleh dinamika pasar yang kompleks dan non-linear, yang sulit ditangkap oleh analisis tradisional. Machine learning memiliki potensi untuk mengungkap hubungan dan pola tersembunyi ini, yang mungkin tidak terlihat oleh mata manusia atau metode statistik konvensional.
+    - Fluktuasi harga saham seringkali dipengaruhi oleh dinamika pasar yang kompleks dan non-linear, yang sulit ditangkap oleh analisis tradisional. Machine learning memiliki potensi untuk mengungkap hubungan dan pola tersembunyi ini, yang mungkin tidak terlihat oleh mata manusia atau metode statistik konvensional.
 - Pernyataan Masalah 2: Bagaimana mengembangkan model machine learning yang dapat secara akurat mengklasifikasikan apakah harga penutupan saham PT ANTM Tbk akan naik atau turun pada hari perdagangan berikutnya?
-Akurasi dalam memprediksi arah pergerakan harga, dibandingkan dengan memprediksi nilai harga secara eksak, adalah kunci untuk mendukung keputusan investasi yang lebih baik dan mengurangi risiko. Bagi investor, mengetahui apakah harga akan naik atau turun pada hari berikutnya lebih langsung dapat diterjemahkan menjadi keputusan beli atau jual, dibandingkan dengan prediksi harga spesifik yang mungkin memiliki margin kesalahan.
+    - Akurasi dalam memprediksi arah pergerakan harga, dibandingkan dengan memprediksi nilai harga secara eksak, adalah kunci untuk mendukung keputusan investasi yang lebih baik dan mengurangi risiko. Bagi investor, mengetahui apakah harga akan naik atau turun pada hari berikutnya lebih langsung dapat diterjemahkan menjadi keputusan beli atau jual, dibandingkan dengan prediksi harga spesifik yang mungkin memiliki margin kesalahan.
 - Pernyataan Masalah 3: Bagaimana mengevaluasi kinerja model prediksi secara kuantitatif untuk memastikan keandalannya dalam skenario pasar yang realistis?
-Tanpa metrik evaluasi yang tepat dan relevan, efektivitas dan keandalan model tidak dapat diukur atau dipercaya. Penting untuk menggunakan metrik yang tidak hanya menunjukkan akurasi keseluruhan, tetapi juga kemampuan model untuk menangani kelas yang mungkin tidak seimbang (misalnya, jumlah hari naik vs. turun) dan implikasi dari kesalahan prediksi.
+    - Tanpa metrik evaluasi yang tepat dan relevan, efektivitas dan keandalan model tidak dapat diukur atau dipercaya. Penting untuk menggunakan metrik yang tidak hanya menunjukkan akurasi keseluruhan, tetapi juga kemampuan model untuk menangani kelas yang mungkin tidak seimbang (misalnya, jumlah hari naik vs. turun) dan implikasi dari kesalahan prediksi.
 
 ### Goals
 
 Sejalan dengan pernyataan masalah yang telah diidentifikasi, proyek ini menetapkan tujuan-tujuan berikut:
 
 - Tujuan 1: Mengembangkan pemahaman mendalam tentang struktur data historis PT ANTM Tbk dan mengidentifikasi fitur-fitur yang paling relevan untuk prediksi.
-Ini mencakup eksplorasi data untuk memahami distribusi, tren, dan anomali, serta mengidentifikasi atau merekayasa fitur-fitur yang paling informatif dari data mentah.
+    - Hal ini mencakup eksplorasi data untuk memahami distribusi, tren, dan anomali, serta mengidentifikasi atau merekayasa fitur-fitur yang paling informatif dari data mentah.
 - Tujuan 2: Membangun dan mengoptimalkan model klasifikasi machine learning yang mampu memprediksi arah pergerakan harga saham ANTM dengan tingkat akurasi yang dapat diterima.
-Fokus pada klasifikasi arah pergerakan harga (naik atau turun) menjadikan masalah ini lebih terarah untuk pengambilan keputusan investasi harian. Pendekatan ini memungkinkan pemanfaatan algoritma klasifikasi yang telah terbukti efektif dalam memproses data tekstual dan numerik, seperti yang terlihat dalam berbagai aplikasi klasifikasi teks.   
+    Fokus pada klasifikasi arah pergerakan harga (naik atau turun) menjadikan masalah ini lebih terarah untuk pengambilan keputusan investasi harian. Pendekatan ini memungkinkan pemanfaatan algoritma klasifikasi yang telah terbukti efektif dalam memproses data tekstual dan numerik, seperti yang terlihat dalam berbagai aplikasi klasifikasi teks.   
 - Tujuan 3: Melakukan evaluasi kinerja model secara komprehensif menggunakan metrik yang relevan untuk klasifikasi, seperti akurasi, presisi, recall, dan F1-score, untuk memvalidasi efektivitas model.
-Evaluasi yang ketat akan memastikan bahwa model tidak hanya memberikan prediksi yang sering benar, tetapi juga dapat diandalkan dalam skenario di mana kesalahan prediksi memiliki konsekuensi finansial.
+    - Evaluasi yang ketat akan memastikan bahwa model tidak hanya memberikan prediksi yang sering benar, tetapi juga dapat diandalkan dalam skenario di mana kesalahan prediksi memiliki konsekuensi finansial.
 
 **Rubrik/Kriteria Tambahan (Opsional)**:
 - Menambahkan bagian “Solution Statement” yang menguraikan cara untuk meraih goals. Bagian ini dibuat dengan ketentuan sebagai berikut: 
 
     ### Solution statements
-    Untuk mencapai tujuan prediksi arah pergerakan harga saham, beberapa pendekatan machine learning akan diimplementasikan dan dibandingkan. Pendekatan ini dirancang untuk memanfaatkan kekuatan algoritma klasifikasi dalam mengidentifikasi pola dari data historis dan memberikan hasil yang terukur.
+    Untuk mencapai tujuan prediksi arah pergerakan harga saham, beberapa pendekatan machine learning akan digunakan untuk diimplementasikan dan dibandingkan. 
 
-    Pendekatan Solusi yang Diajukan:
+    ### Pendekatan Solusi yang Diajukan:
 
-    Untuk mengatasi masalah klasifikasi biner (harga naik atau turun), dua atau lebih algoritma klasifikasi machine learning akan diimplementasikan dan kinerjanya akan dibandingkan. Kandidat algoritma dipilih berdasarkan relevansi dan efektivitasnya dalam tugas klasifikasi:
+    Akan digunakan dua atau lebih algoritma klasifikasi machine learning untuk diimplementasikan dan kinerjanya akan dibandingkan, guna untuk mengatasi masalah klasifikasi biner (harga naik atau turun). Kandidat algoritma dipilih berdasarkan relevansi dan efektivitasnya dalam tugas klasifikasi:
 
-    - Logistic Regression: Algoritma ini akan digunakan sebagai baseline model. Kelebihannya terletak pada kesederhanaan dan kecepatan pelatihannya, serta kemudahannya dalam interpretasi hasil. Meskipun demikian, keterbatasannya adalah asumsi linearitas hubungan antara fitur dan probabilitas logaritmik variabel target, yang mungkin tidak sepenuhnya sesuai untuk menangkap pola non-linear kompleks dalam data saham.   
-    - Support Vector Machines (SVM): SVM dikenal karena efektivitasnya dalam ruang berdimensi tinggi dan kemampuannya untuk menangani hubungan non-linear melalui penggunaan kernel trick. Algoritma ini memiliki kemampuan generalisasi yang baik, menjadikannya pilihan yang kuat untuk masalah klasifikasi biner seperti prediksi arah harga saham. Namun, SVM sensitif terhadap penskalaan fitur dan membutuhkan hyperparameter tuning yang cermat untuk mencapai kinerja optimal.   
-    - Random Forest: Sebagai metode ensemble yang kuat, Random Forest mampu menangani hubungan non-linear dan interaksi fitur secara efektif. Algoritma ini kurang sensitif terhadap overfitting dibandingkan decision tree tunggal dan dapat memberikan estimasi pentingnya fitur, yang berguna untuk pemahaman data. Kekurangannya adalah sifatnya yang kurang interpretable (sering disebut black-box model) dibandingkan regresi logistik, dan dapat menjadi intensif secara komputasi untuk dataset yang sangat besar atau jumlah pohon yang banyak.   
+    - Logistic Regression: Algoritma ini akan digunakan sebagai baseline model. Kelebihan dari algoritma ini terletak pada kesederhanaan dan kecepatan pelatihannya, juga mampu untuk menginterpretasikan hasil dengan mudah. Meskipun begitu, terdapat keterbatasan pada model ini dimana asumsi linearitas hubungan antara fitur dan probabilitas logaritmik variabel target mungkin tidak sepenuhnya sesuai untuk menangkap pola non-linear kompleks dalam data saham.   
+    - Support Vector Machines (SVM): SVM memiliki tingkat efektivitas yang cukup baik dalam ruang berdimensi tinggi dan memiliki kemampuan yang cukup mumpuni untuk menangani hubungan non-linear melalui penggunaan kernel trick. Model ini mampu melakukan generalisasi dengan cukup baik, sehingga bisa menjadi salah satu pilihan yterbaik untuk masalah klasifikasi biner seperti prediksi arah harga saham. Perlu diperhatikan SVM sensitif terhadap penskalaan fitur dan membutuhkan hyperparameter tuning yang cermat untuk mencapai kinerjanya yang paling optimal.   
+    - Random Forest: Sebagai metode ensemble yang kuat, Random Forest mampu menangani hubungan non-linear dan interaksi fitur secara efektif. Perlu diperhatikan bahwa algoritma ini kurang sensitif terhadap overfitting dibandingkan decision tree tunggal dan juga mampu memberikan estimasi pentingnya fitur, yang berguna untuk memperdalam pemahaman data. Kekurangannya lebih sulit untuk diinterpretasikan dibandingkan regresi logistik, dan dapat menjadi intensif secara komputasi untuk dataset yang sangat besar atau jumlah pohon yang banyak.   
     Setiap model yang dipilih akan menjalani proses hyperparameter tuning yang sistematis untuk mengoptimalkan kinerjanya. Teknik seperti Grid Search atau Randomized Search yang dikombinasikan dengan Cross-Validation akan diterapkan untuk menemukan kombinasi hyperparameter terbaik. Setelah proses tuning, model dengan kinerja terbaik akan dipilih sebagai solusi utama.
 
-    Metrik Kuantitatif untuk Pengukuran Solusi:
+    ### Metrik Kuantitatif untuk Pengukuran Solusi:
 
-    Keberhasilan solusi akan diukur secara kuantitatif menggunakan metrik evaluasi klasifikasi standar. Metrik ini akan memberikan gambaran holistik tentang kemampuan model dalam memprediksi kenaikan dan penurunan harga saham secara seimbang:
+    Keberhasilan solusi akan dilihat melalui pengukuran yang sudah dilakukan secara kuantitatif menggunakan metrik evaluasi klasifikasi standar. Nilai - nilai yang diperoleh dari metrik ini akan memberikan gambaran mengenai kemampuan model dalam memprediksi kenaikan dan penurunan harga saham secara seimbang:
 
     - Akurasi (Accuracy): Mengukur proporsi prediksi yang benar dari total prediksi.
     - Presisi (Precision): Mengukur proporsi prediksi positif yang benar dari semua prediksi positif.
     - Recall (Sensitivity/True Positive Rate): Mengukur proporsi kasus positif yang benar-benar teridentifikasi.
     - F1-Score: Rata-rata harmonik dari presisi dan recall, memberikan keseimbangan antara keduanya.
-    - Pemilihan metrik ini sangat penting karena dalam prediksi pasar saham, baik false positives (memprediksi harga naik padahal sebenarnya turun, yang dapat menyebabkan kerugian) maupun false negatives (memprediksi harga turun padahal sebenarnya naik, yang berarti kehilangan peluang keuntungan) sama-sama memiliki konsekuensi finansial. Metrik-metrik ini, seperti yang juga ditekankan dalam penelitian tentang analisis sentimen, memungkinkan pengukuran kinerja yang lebih nuansa daripada sekadar akurasi keseluruhan.   
+  
+    Pemilihan metrik ini sangat penting karena dalam prediksi pasar saham, baik false positives (memprediksi harga naik padahal sebenarnya turun, yang dapat menyebabkan kerugian) maupun false negatives (memprediksi harga turun padahal sebenarnya naik, yang berarti kehilangan peluang keuntungan) sama-sama memiliki konsekuensi finansial. Metrik-metrik ini, seperti yang juga ditekankan dalam penelitian tentang analisis sentimen, memungkinkan pengukuran kinerja yang lebih nuansa daripada sekadar akurasi keseluruhan.   
 
 ## Data Understanding
-agian ini memberikan gambaran komprehensif mengenai data yang digunakan dalam proyek, termasuk sumber, struktur, dan karakteristik setiap variabel. Pemahaman yang mendalam terhadap data merupakan fondasi krusial sebelum memulai tahapan pemrosesan dan pemodelan.
+Bagian ini akan memberikan gambaran secara menyeluruh mengenai data yang digunakan dalam proyek, termasuk sumber, struktur, dan karakteristik setiap variabel. Pemahaman yang mendalam terhadap data merupakan fondasi krusial sebelum memulai tahapan pemrosesan dan pemodelan.
 
 Informasi Umum Data dan Sumber
 
 Data yang menjadi dasar analisis dalam proyek ini adalah data historis harga saham PT ANTM Tbk. Data ini diperoleh dari sumber publik dan disajikan dalam format CSV. Dataset mencakup periode waktu yang signifikan, dimulai dari 2 Januari 2014 hingga 30 Desember 2024. Ketersediaan data historis yang panjang ini memungkinkan model untuk mempelajari pola dan tren jangka panjang yang mungkin ada dalam pergerakan harga saham.   
 
-Sumber data spesifik untuk proyek ini adalah file Data Historis PT ANTM Tbk.csv. Penting untuk dicatat bahwa dalam lingkungan komputasi saat ini, meskipun konten file CSV dapat diakses dan diinterpretasikan sebagai teks, sistem tidak memiliki kemampuan untuk secara langsung memprosesnya sebagai file CSV untuk perhitungan statistik deskriptif otomatis atau manipulasi data yang kompleks. Oleh karena itu, analisis data dan persiapan fitur akan dijelaskan secara konseptual, menguraikan langkah-langkah yang akan diambil dalam implementasi nyata. Keterbatasan ini mengarahkan fokus laporan pada metodologi dan kerangka kerja konseptual proyek machine learning, bukan pada presentasi hasil komputasi langsung.
-
-Variabel-variabel pada Dataset
+### Variabel-variabel pada Dataset
 
 Dataset Data Historis PT ANTM Tbk.csv  terdiri dari beberapa kolom yang merepresentasikan aspek-aspek penting dari perdagangan saham harian: 
 
@@ -130,46 +131,10 @@ Tahap eksplorasi data (EDA) dan analisis statistik deskriptif sangat penting unt
 - Pembentukan Variabel Target: Untuk masalah klasifikasi prediksi arah pergerakan harga, variabel target biner (Arah_Gerak) akan dibuat dari kolom Perubahan%. Variabel ini akan diberi nilai 1 jika Perubahan% > 0 (mengindikasikan harga naik) dan 0 jika Perubahan% <= 0 (mengindikasikan harga turun atau stagnan). Transformasi ini mengubah masalah regresi (memprediksi nilai harga) menjadi masalah klasifikasi (memprediksi arah), yang seringkali lebih praktis untuk pengambilan keputusan investasi harian dan lebih sesuai dengan fokus klasifikasi yang relevan dengan penelitian yang tersedia.
 - Identifikasi Outlier: Menggunakan metode statistik atau visualisasi, outlier dalam data (misalnya, lonjakan harga atau volume yang ekstrem) akan dideteksi. Outlier ini perlu ditangani dengan hati-hati karena dapat memengaruhi kinerja model secara negatif jika tidak ditangani dengan tepat.
 
-Tahap pemahaman data ini merupakan fondasi yang kuat untuk tahapan selanjutnya, memastikan bahwa data siap untuk diproses dan diinterpretasikan dengan benar dalam konteks pemodelan machine learning.
-
-## Sumber Data
-Investing.com, “Aneka Tambang Tbk Historical Data,” 2025. [Online]. Tersedia: https://id.investing.com/equities/aneka-tambang-historical-data
+Pada tahap pemahaman data ini merupakan tahapan yang penting seblum melangkah ke tahapan selanjutnya, karena tahapan ini akan memastikan bahwa data siap untuk diproses dan diinterpretasikan dengan benar dalam konteks pemodelan machine learning.
 
 Selanjutnya uraikanlah seluruh variabel atau fitur pada data. Sebagai contoh:  
 
-### Variabel-variabel yang terdapat pada dataset "Data Historis ANTM" adalah sebagai berikut:
-1. Date (datetime64)
-    - Tanggal perdagangan harian (aslinya format dd/mm/YYYY).
-2. Close (float64)
-    - Harga penutupan saham pada akhir hari (dalam bentuk juta-an Rupiah, misalnya 1.635 berarti Rp 1.635.000).
-3. Open (float64)
-    - Harga pembukaan pada awal hari perdagangan (dalam bentuk juta-an Rupiah).
-4. High (float64)
-    - Harga tertinggi dalam hari perdagangan (dalam bentuk juta-an Rupiah).
-5. Low (float64)
-    - Harga terendah dalam hari perdagangan (dalam bentuk juta-an Rupiah).
-6. Volume (string)
-    - Volume perdagangan harian dalam format “M” (contoh: 32,28M berarti 32,28 juta lembar).
-7. ChangePercent (string)
-    - Persentase perubahan harga relatif hari sebelumnya (contoh: -0,91%).
-8. VolumeNumeric (float64)
-    - Volume bersih hasil konversi ke angka:
-        1. Hilangkan “M”
-        2. Ganti koma “,” dengan titik “.”
-        3. Ubah bentuk data ke float dan kalikan dengan 1e6.
-    - Satuan: lembar saham (contoh: 32,28M → 32.28 × 10^6).
-9. ChangePercentNumeric (float64)
-    - Persentase perubahan dalam bentuk float:
-        1. Hapus “%”
-        2. Ganti koma “,” dengan titik “.”
-        3. Ubah ke float (contoh: -0,91% → −0.91).
-10. Return (float64)
-    - Persentase perubahan harga penutupan hari ini dibandingkan hari sebelumnya.
-    - Baris pertama berisikan "NaN" yang kemudian di-drop.
-11. Label (string)
-    - “Up” jika Return > 0, “Down” jika Return ≤ 0.
-12. LabelNumeric (int64)
-    - Konversi Label: “Down” → 0, “Up” → 1.
 
 ![Correlation Matrix for Numerical Features](Corr_Matrix_Num_Features.png)
 
@@ -177,10 +142,10 @@ Selanjutnya uraikanlah seluruh variabel atau fitur pada data. Sebagai contoh:
 - Melakukan beberapa tahapan yang diperlukan untuk memahami data, contohnya teknik visualisasi data atau exploratory data analysis.
 
 ## Data Preparation
-Tahap persiapan data adalah fase krusial dalam siklus hidup proyek machine learning, di mana data mentah diubah menjadi format yang sesuai dan berkualitas tinggi untuk pemodelan. Setiap teknik yang diterapkan memiliki justifikasi yang jelas, bertujuan untuk memaksimalkan kinerja dan keandalan model.
+Tahap persiapan data merupakan fase yang krusial peranannya dalam siklus hidup proyek machine learning, di mana data mentah diubah menjadi format yang sesuai untuk pemodelan dan memiliki tujuan untuk memaksimalkan kinerja dan keandalan model.
 
 ### Teknik Data Preparation yang Diterapkan
-Proses persiapan data akan melibatkan serangkaian langkah yang terurut dan terjustifikasi:
+Proses persiapan data akan melibatkan serangkaian langkah yang terurut dan:
 
 - Konversi Tipe Data:
     - Kolom Tanggal akan dikonversi dari format string ke objek datetime. Ini sangat penting untuk memungkinkan operasi deret waktu, seperti pengurutan kronologis dan pembuatan fitur berbasis waktu.
