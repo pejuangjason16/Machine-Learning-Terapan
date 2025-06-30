@@ -71,7 +71,7 @@ Sejalan dengan pernyataan masalah yang telah diidentifikasi, proyek ini menetapk
 **Rubrik/Kriteria Tambahan (Opsional)**:
 - Menambahkan bagian “Solution Statement” yang menguraikan cara untuk meraih goals. Bagian ini dibuat dengan ketentuan sebagai berikut: 
 
-**Solution statements**
+### Solution statements
     Untuk mencapai tujuan prediksi arah pergerakan harga saham, beberapa pendekatan machine learning akan digunakan untuk diimplementasikan dan dibandingkan. 
 
 **Pendekatan Solusi yang Diajukan**:
@@ -98,7 +98,7 @@ Keberhasilan solusi akan dilihat melalui pengukuran yang sudah dilakukan secara 
 ## Data Understanding
 Bagian ini akan memberikan gambaran secara menyeluruh mengenai data yang digunakan dalam proyek, termasuk sumber, struktur, dan karakteristik setiap variabel. Pemahaman yang mendalam terhadap data merupakan fondasi krusial sebelum memulai tahapan pemrosesan dan pemodelan.
 
-Informasi Umum Data dan Sumber
+**Informasi Umum Data dan Sumber**:
 
 Data yang menjadi dasar analisis dalam proyek ini adalah data historis harga saham PT ANTM Tbk. Data ini diperoleh dari sumber publik dan disajikan dalam format CSV. Dataset mencakup periode waktu yang signifikan, dimulai dari 2 Januari 2014 hingga 30 Desember 2024. Ketersediaan data historis yang panjang ini memungkinkan model untuk mempelajari pola dan tren jangka panjang yang mungkin ada dalam pergerakan harga saham.   
 
@@ -134,20 +134,11 @@ Tahap eksplorasi data (EDA) dan analisis statistik deskriptif sangat penting unt
 
 Pada tahap pemahaman data ini merupakan tahapan yang penting seblum melangkah ke tahapan selanjutnya, karena tahapan ini akan memastikan bahwa data siap untuk diproses dan diinterpretasikan dengan benar dalam konteks pemodelan machine learning.
 
-Selanjutnya uraikanlah seluruh variabel atau fitur pada data. Sebagai contoh:  
-
-
-![Correlation Matrix for Numerical Features](Corr_Matrix_Num_Features.png)
-
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Melakukan beberapa tahapan yang diperlukan untuk memahami data, contohnya teknik visualisasi data atau exploratory data analysis.
-
 ## Data Preparation
 Tahap persiapan data merupakan fase yang krusial peranannya dalam siklus hidup proyek machine learning, di mana data mentah diubah menjadi format yang sesuai untuk pemodelan dan memiliki tujuan untuk memaksimalkan kinerja dan keandalan model.
 
 ### Teknik Data Preparation yang Diterapkan
 Proses persiapan data akan melibatkan serangkaian langkah yang terurut dan:
-
 - Konversi Tipe Data:
     - Kolom Tanggal akan dikonversi dari format string ke objek datetime. Ini sangat penting untuk memungkinkan operasi deret waktu, seperti pengurutan kronologis dan pembuatan fitur berbasis waktu.
     - Kolom Vol. dan Perubahan% yang saat ini dalam format string (dengan sufiks seperti 'M' untuk juta, 'B' untuk miliar, dan '%' untuk persentase) akan dikonversi menjadi tipe data numerik (float).
