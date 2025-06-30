@@ -237,7 +237,53 @@ Memahami setiap metrik adalah kunci untuk menginterpretasikan hasil evaluasi mod
     - Formula: 2 * (Presisi * Recall) / (Presisi + Recall)
     - Cara Kerja: F1-Score memberikan skor tunggal yang menyeimbangkan kemampuan model untuk tidak membuat prediksi positif yang salah (Presisi) dan kemampuannya untuk menemukan semua instance positif (Recall). Dalam prediksi saham, di mana baik kerugian akibat prediksi salah maupun hilangnya peluang sama-sama merugikan, F1-Score adalah metrik yang sangat relevan dan seringkali menjadi pilihan utama untuk model klasifikasi.
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan formula metrik dan bagaimana metrik tersebut bekerja.
+### Hasil Evaluasi:
+
+**Sebelum Tuning**:
+
+**Logistic Regression**
+- Akurasi: 56%
+- Recall kelas 1 (naik): 0.00 (model tidak mendeteksi kenaikan)
+- F1-score kelas 1: 0.01
+
+**SVM**
+- Akurasi: 56%
+- Recall kelas 1: 0.02
+- F1-score kelas 1: 0.03
+
+**Random Forest**
+- Akurasi: 55%
+- Recall kelas 1: 0.52
+- Precision kelas 1: 0.50
+- F1-score kelas 1: 0.51
+
+**Setelah Tuning**:
+
+**Logistic Regression (Tuning)**
+- Akurasi: 56%
+- Recall kelas 1 (naik): 0.00 (model tidak mendeteksi kenaikan)
+- F1-score kelas 1: 0.00
+
+**SVM (Tuning)**
+- Akurasi: 56%
+- Recall kelas 1: 0.00
+- F1-score kelas 1: 0.00
+
+**Random Forest (Tuning)**
+- Akurasi: 56%
+- Recall kelas 1: 0.54
+- Precision kelas 1: 0.13
+- F1-score kelas 1: 0.21
+
+Bisa terlihat berdasarkan Confusion Matrix bahwa Logistic Regression dan SVM mengalami kegagalan dalam mengenali kelas naik meskipun akurasinya terlihat seimbang. Sementara Random Forest mampu menunjukkan kemampuan awal mengenali kedua kelas, meskipun hasilnya tetap kurang baik dan tetap cenderung bias terhadap kelas mayoritas.
+
+Sehingga yang bisa disimpulkan dari proyek ini adalah semua model yang dibangun seperti model Logistic Regression , model SVM, dan Random Forest masih sangat buruk performanya. Model - model menunjukkan keterbatasan dalam mendeteksi kelas 1 (harga naik), bahkan setelah dilakukan tuning sekalipun. Meskipun memang model Random Forest menjadi model paling seimbang diantara yang lain, namun recall dan f1-score masih rendah dan belum memenuhi ekspektasi yang diharapkan. Hal yang menjadi menjadi pengaruh yang sangat besar mungkin disbebabkan karena dataset sangat dipengaruhi oleh class imbalance dan fitur terbatas.
+
+Hal - hal yang mungkin bisa diterapkan berikutnya agar prediksi yang dihasilkan lebih baik adalah:
+1. Menggunakan teknik class balancing seperti SMOTE atau class_weight=balanced bisa menjadi salah satu cara yang bisa dilakukan.
+2. Fitur teknikal tambahan seperti Bollinger Bands, Stochastic Oscillator bisa ditambahkan guna untuk menghasilkan hasil prediksi yang lebih baik.
+3. Bisa melakukan evaluasi model menggunakan strategi trading simulasi untuk menilai dampak praktis dari prediksi.
+4. Mempertimbangkan fitur berbasis berita atau sentimen pasar untuk memperkaya konteks prediktif agar prediksi yang dihasilkan semakin baik.
+
 
 **---Ini adalah bagian akhir laporan---**
