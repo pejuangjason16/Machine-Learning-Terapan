@@ -72,7 +72,7 @@ Sejalan dengan pernyataan masalah yang telah diidentifikasi, proyek ini menetapk
 - Menambahkan bagian “Solution Statement” yang menguraikan cara untuk meraih goals. Bagian ini dibuat dengan ketentuan sebagai berikut: 
 
 ### Solution statements
-    Untuk mencapai tujuan prediksi arah pergerakan harga saham, beberapa pendekatan machine learning akan digunakan untuk diimplementasikan dan dibandingkan. 
+Untuk mencapai tujuan prediksi arah pergerakan harga saham, beberapa pendekatan machine learning akan digunakan untuk diimplementasikan dan dibandingkan. 
 
 **Pendekatan Solusi yang Diajukan**:
 
