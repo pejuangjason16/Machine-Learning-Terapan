@@ -30,7 +30,7 @@ Langkah-langkah penyelesaiannya:
 - Melihat tren umum, volatilitas harian, pergerakan rata-rata (MA), volume transaksi.
 - Melihat korelasi antar variabel: harga pembukaan, penutupan, tertinggi, terendah, volume.
 3. Pemodelan Prediktif:
-- Menggunakan model time-series seperti ARIMA, Prophet, atau LSTM (untuk prediksi jangka pendek).
+- Menggunakan model time-series seperti ARIMA (untuk prediksi jangka pendek).
 - Evaluasi model menggunakan MAE, RMSE, atau MAPE.
 4. Implementasi Strategi Investasi:
 - Simulasi strategi beli-jual berdasarkan indikator teknikal (Moving Average Cross, RSI, MACD).
