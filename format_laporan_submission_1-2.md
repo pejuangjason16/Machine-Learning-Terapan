@@ -35,19 +35,12 @@ Langkah-langkah penyelesaiannya:
 4. Implementasi Strategi Investasi:
 - Simulasi strategi beli-jual berdasarkan indikator teknikal (Moving Average Cross, RSI, MACD).
 
-- Jelaskan mengapa dan bagaimana masalah tersebut harus diselesaikan
-- Menyertakan hasil riset terkait atau referensi. Referensi yang diberikan harus berasal dari sumber yang kredibel dan author yang jelas.
-- Format Referensi dapat mengacu pada penulisan sitasi [IEEE](https://journals.ieeeauthorcenter.ieee.org/wp-content/uploads/sites/7/IEEE_Reference_Guide.pdf), [APA](https://www.mendeley.com/guides/apa-citation-guide/) atau secara umum seperti [di sini](https://penerbitdeepublish.com/menulis-buku-membuat-sitasi-dengan-mudah/)
-- Sumber yang bisa digunakan [Scholar](https://scholar.google.com/)
-
 ## Business Understanding
-
 Bagian ini menguraikan klarifikasi masalah bisnis yang ingin diselesaikan melalui proyek machine learning ini, menjabarkan pernyataan masalah, tujuan, dan usulan solusi yang terukur.
 
 Bagian laporan ini mencakup:
 
 ### Problem Statements
-
 Pergerakan harga saham di pasar modal adalah fenomena yang sangat kompleks, dipengaruhi oleh interaksi berbagai faktor yang seringkali tidak linear dan sulit diprediksi. Keterbatasan metode analisis tradisional dalam menangkap seluruh nuansa ini memunculkan kebutuhan akan pendekatan yang lebih canggih. Berdasarkan konteks ini, proyek ini merumuskan beberapa pernyataan masalah utama:
 
 - Pernyataan Masalah 1: Bagaimana mengidentifikasi pola dan tren tersembunyi dalam data harga saham historis PT ANTM Tbk untuk memprediksi arah pergerakan harga harian?
@@ -58,7 +51,6 @@ Pergerakan harga saham di pasar modal adalah fenomena yang sangat kompleks, dipe
     - Tanpa metrik evaluasi yang tepat dan relevan, efektivitas dan keandalan model tidak dapat diukur atau dipercaya. Penting untuk menggunakan metrik yang tidak hanya menunjukkan akurasi keseluruhan, tetapi juga kemampuan model untuk menangani kelas yang mungkin tidak seimbang (misalnya, jumlah hari naik vs. turun) dan implikasi dari kesalahan prediksi.
 
 ### Goals
-
 Sejalan dengan pernyataan masalah yang telah diidentifikasi, proyek ini menetapkan tujuan-tujuan berikut:
 
 - Tujuan 1: Mengembangkan pemahaman mendalam tentang struktur data historis PT ANTM Tbk dan mengidentifikasi fitur-fitur yang paling relevan untuk prediksi.
@@ -68,14 +60,10 @@ Sejalan dengan pernyataan masalah yang telah diidentifikasi, proyek ini menetapk
 - Tujuan 3: Melakukan evaluasi kinerja model secara komprehensif menggunakan metrik yang relevan untuk klasifikasi, seperti akurasi, presisi, recall, dan F1-score, untuk memvalidasi efektivitas model.
     - Evaluasi yang ketat akan memastikan bahwa model tidak hanya memberikan prediksi yang sering benar, tetapi juga dapat diandalkan dalam skenario di mana kesalahan prediksi memiliki konsekuensi finansial.
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Menambahkan bagian “Solution Statement” yang menguraikan cara untuk meraih goals. Bagian ini dibuat dengan ketentuan sebagai berikut: 
-
 ### Solution statements
 Untuk mencapai tujuan prediksi arah pergerakan harga saham, beberapa pendekatan machine learning akan digunakan untuk diimplementasikan dan dibandingkan. 
 
 **Pendekatan Solusi yang Diajukan**:
-
 Akan digunakan dua atau lebih algoritma klasifikasi machine learning untuk diimplementasikan dan kinerjanya akan dibandingkan, guna untuk mengatasi masalah klasifikasi biner (harga naik atau turun). Kandidat algoritma dipilih berdasarkan relevansi dan efektivitasnya dalam tugas klasifikasi:
 
 - Logistic Regression: Algoritma ini akan digunakan sebagai baseline model. Kelebihan dari algoritma ini terletak pada kesederhanaan dan kecepatan pelatihannya, juga mampu untuk menginterpretasikan hasil dengan mudah. Meskipun begitu, terdapat keterbatasan pada model ini dimana asumsi linearitas hubungan antara fitur dan probabilitas logaritmik variabel target mungkin tidak sepenuhnya sesuai untuk menangkap pola non-linear kompleks dalam data saham.   
@@ -85,7 +73,6 @@ Akan digunakan dua atau lebih algoritma klasifikasi machine learning untuk diimp
     Setiap model yang dipilih akan menjalani proses hyperparameter tuning yang sistematis untuk mengoptimalkan kinerjanya. Teknik seperti Grid Search atau Randomized Search yang dikombinasikan dengan Cross-Validation akan diterapkan untuk menemukan kombinasi hyperparameter terbaik. Setelah proses tuning, model dengan kinerja terbaik akan dipilih sebagai solusi utama.
 
 **Metrik Kuantitatif untuk Pengukuran Solusi**:
-
 Keberhasilan solusi akan dilihat melalui pengukuran yang sudah dilakukan secara kuantitatif menggunakan metrik evaluasi klasifikasi standar. Nilai - nilai yang diperoleh dari metrik ini akan memberikan gambaran mengenai kemampuan model dalam memprediksi kenaikan dan penurunan harga saham secara seimbang:
 
 - Akurasi (Accuracy): Mengukur proporsi prediksi yang benar dari total prediksi.
@@ -101,11 +88,9 @@ Bagian ini akan memberikan gambaran secara menyeluruh mengenai data yang digunak
 Dataset yang dipakai merupakan Data Historis PT ANTM Tbk yang berbentuk data deret waktu mulai dari tahun 2014 sampai akhir tahun 2024. Dataset ini terdiri dari total 2668 data entri dengan total kolom sebanyak 7 kolom. 7 kolom tersebut mewakili tiap variabel yang akan dipakai dalam proyek kali ini, yaitu ada variabel "Tanggal" yang merepresentasikan waktu harian mulai dari awal tahun 2014 sampai dengan akhir tahun 2024, ada variabel "Terakhir yang merepresentasikan harga penutupan pada akhir hari itu (harga terakhir saham diperdagangkan), ada variabel "Pembukaan" yang merepresentasikan harga pembukaan saham pada awal hari perdagangan, ada variabel "Tertinggi" yang merepresentasikan harga tertinggi yang dicapai saham dalam satu hari perdagangan. ada variabel "Terendah" yang merepresentasikan harga terendah yang dicapai saham dalam satu hari perdagangan, variabel "Vol." yang merepresentasikan volume transaksi saham pada hari tersebut yang bentuknya satuan ribu (K), juta (M), atau miliar (B) saham dan bentuknya dikonversi menjadi float (jumlah unit saham), dan terakhir ada variabel "Perubahan%" yang merepresentasikan persentase perubahan harga dibandingkan hari sebelumnya (Positif berarti naik, negatif berarti turun). Semua variabel dalam dataset ini merupakan fitur numerik dengan bentuk float kecuali variabel "Tanggal". Tidak terdapat satu pun nilai yang hilang dalam dataset yang digunakan dan tidak terdapat satu pun nilai duplikat dalam dataset.
 
 **Informasi Umum Data dan Sumber**:
-
-Data yang menjadi dasar analisis dalam proyek ini adalah data historis harga saham PT ANTM Tbk. Data ini diperoleh dari sumber publik dan disajikan dalam format CSV. Dataset mencakup periode waktu yang signifikan, dimulai dari 2 Januari 2014 hingga 30 Desember 2024. Ketersediaan data historis yang panjang ini memungkinkan model untuk mempelajari pola dan tren jangka panjang yang mungkin ada dalam pergerakan harga saham.   
+Data yang menjadi dasar analisis dalam proyek ini adalah data historis harga saham PT ANTM Tbk. Data ini diperoleh dari sumber publik dan disajikan dalam format CSV yang bisa diunduh melalui situs berikut: [Data Historis ANTM](https://id.investing.com/equities/aneka-tambang-historical-data). Dataset mencakup periode waktu yang signifikan, dimulai dari 2 Januari 2014 hingga 30 Desember 2024. Ketersediaan data historis yang panjang ini memungkinkan model untuk mempelajari pola dan tren jangka panjang yang mungkin ada dalam pergerakan harga saham.   
 
 ### Variabel-variabel pada Dataset
-
 Dataset Data Historis PT ANTM Tbk.csv  terdiri dari beberapa kolom yang merepresentasikan aspek-aspek penting dari perdagangan saham harian: 
 
 | Nama Variabel | Deskripsi | Tipe Data Asli | Tipe Data Setelah Pemrosesan (Diharapkan) |
@@ -121,7 +106,6 @@ Dataset Data Historis PT ANTM Tbk.csv  terdiri dari beberapa kolom yang merepres
 *** Tabel 1: Variabel-variabel pada Dataset Historis PT ANTM Tbk
 
 ### Eksplorasi Data dan Analisis Statistik Deskriptif
-
 Tahap eksplorasi data (EDA) dan analisis statistik deskriptif sangat penting untuk memahami karakteristik data, mengidentifikasi potensi masalah kualitas data, dan merumuskan strategi rekayasa fitur yang efektif. Meskipun tidak dapat dilakukan secara langsung dalam lingkungan ini, langkah-langkah konseptualnya adalah sebagai berikut:
 
 - Pemuatan Data: Data akan dimuat ke dalam struktur data yang sesuai, seperti DataFrame Pandas, untuk memfasilitasi manipulasi dan analisis yang efisien.
@@ -170,7 +154,6 @@ Dengan menerapkan teknik-teknik persiapan data ini secara cermat, data akan siap
 Tahapan pemodelan adalah inti dari proyek machine learning, di mana algoritma dipilih, dikonfigurasi, dan dilatih untuk menyelesaikan masalah yang telah didefinisikan. Pemilihan algoritma yang tepat dan optimasi parameternya sangat krusial untuk mencapai kinerja prediksi yang diinginkan.
 
 ### Pemilihan Model Machine Learning
-
 Berdasarkan sifat masalah sebagai tugas klasifikasi biner (memprediksi apakah harga saham akan naik atau turun) dan karakteristik data deret waktu, beberapa algoritma machine learning yang relevan akan dipertimbangkan dan diimplementasikan:
 
 - Logistic Regression:
