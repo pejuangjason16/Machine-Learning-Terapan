@@ -102,7 +102,7 @@ Dataset yang dipakai merupakan Data Historis PT ANTM Tbk yang berbentuk data der
 
 **Informasi Umum Data dan Sumber**:
 
-Data yang menjadi dasar analisis dalam proyek ini adalah data historis harga saham PT ANTM Tbk. Data ini diperoleh dari sumber publik dan disajikan dalam format CSV. Dataset mencakup periode waktu yang signifikan, dimulai dari 2 Januari 2014 hingga 30 Desember 2024. Ketersediaan data historis yang panjang ini memungkinkan model untuk mempelajari pola dan tren jangka panjang yang mungkin ada dalam pergerakan harga saham.   
+Data yang menjadi dasar analisis dalam proyek ini adalah data historis harga saham PT ANTM Tbk. Data ini diperoleh dari sumber publik dan disajikan dalam format CSV yang bisa diunduh melalui situs berikut: [Data Historis ANTM](https://id.investing.com/equities/aneka-tambang-historical-data). Dataset mencakup periode waktu yang signifikan, dimulai dari 2 Januari 2014 hingga 30 Desember 2024. Ketersediaan data historis yang panjang ini memungkinkan model untuk mempelajari pola dan tren jangka panjang yang mungkin ada dalam pergerakan harga saham.   
 
 ### Variabel-variabel pada Dataset
 
