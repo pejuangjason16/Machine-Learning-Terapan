@@ -15,7 +15,8 @@ Dengan semakin banyaknya data yang tersedia terkait film, seperti rating, pendap
 ### Problem Statements
 
 - Pernyataan Masalah 1: Film Harry Potter seri manakah yang paling disukai berdasarkan dataset ulasan Film Harry Potter yang digunakan?
-      - Film Harry Potter terdiri dari banyak seri yang masing-masing seri nya memiliki tempat tertentu dalam hati para penggemar yang mana basis penggemarnya pun sangat besar.
+
+  - Film Harry Potter terdiri dari banyak seri yang masing-masing seri nya memiliki tempat tertentu dalam hati para penggemar yang mana basis penggemarnya pun sangat besar.
 
 - Pernyataan Masalah 2: Bagaimana sistem rekomendasi film yang dibangun mampu membantu para penonton baru dan calon penggemar baru untuk menonton seri film Harry Potter yang paling direkomendasikan?
       - Sistem rekomendasi akan menentukan bagaimana pengalaman para penonton dan calon penggemar-penggemar baru dalam menonton seri film Harry Potter agar ekskpektasi dan harapan yang mereka miliki dapat terpenuhi.
