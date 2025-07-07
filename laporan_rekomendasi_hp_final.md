@@ -105,28 +105,66 @@ print(df.isnull().sum())
 
 ### Content-Based Filtering dari Deskripsi
 
-Menggunakan `TfidfVectorizer` untuk membangun model rekomendasi berdasarkan kemiripan antar review `description`.
+Dalam proyek ini, dua pendekatan sistem rekomendasi diimplementasikan: Content-Based Filtering dan Collaborative Filtering. Masing-masing pendekatan memiliki kelebihan dan kekurangan yang menjadi pertimbangan dalam pemilihan solusi.
 
-```python
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
+**Content-Based Filtering
 
-# Hapus NaN di kolom deskripsi
-df = df.dropna(subset=['description'])
+Pendekatan ini merekomendasikan item berdasarkan kemiripan atribut atau konten dari item tersebut. Dalam kasus ini, atribut yang digunakan adalah deskripsi dari setiap film.
 
-vectorizer = TfidfVectorizer(stop_words='english')
-tfidf_matrix = vectorizer.fit_transform(df['description'])
+- TF-IDF Vectorizer: Teknik ini digunakan untuk mengubah teks deskripsi film menjadi matriks representasi numerik. TF-IDF akan memberikan bobot yang lebih tinggi pada kata-kata yang sering muncul dalam sebuah dokumen (film) tetapi jarang muncul di dokumen lain, sehingga dapat mengidentifikasi kata-kata kunci yang penting dari setiap deskripsi.
 
-cos_sim = cosine_similarity(tfidf_matrix)
+- Cosine Similarity: Setelah deskripsi diubah menjadi vektor numerik, cosine similarity digunakan untuk mengukur kemiripan antara dua film. Semakin tinggi nilai cosine similarity, semakin mirip kedua film tersebut.
 
-# Fungsi rekomendasi berbasis deskripsi
-def recommend_by_description(index, cosine_sim=cos_sim):
-    scores = list(enumerate(cosine_sim[index]))
-    scores = sorted(scores, key=lambda x: x[1], reverse=True)[1:4]
-    return df.iloc[[i[0] for i in scores]][['book', 'name', 'stars_given']]
+- Implementasi:
+  1. Membuat matriks TF-IDF dari kolom description.
+  2. Menghitung matriks cosine similarity dari matriks TF-IDF.
+  3. Membuat fungsi yang akan memberikan rekomendasi 5 film teratas berdasarkan kemiripan deskripsi.
 
-recommend_by_description(10)  # Contoh rekomendasi dari review ke-10
-```
+Kelebihan dan Kekurangan Content-Based Filtering
+
+Kelebihan:
+
+Independensi Pengguna: Model tidak memerlukan data dari pengguna lain untuk memberikan rekomendasi. Rekomendasi untuk satu pengguna tidak dipengaruhi oleh pengguna lain, sehingga dapat mengatasi masalah untuk pengguna baru (user cold start).
+
+Transparansi: Rekomendasi yang diberikan mudah dijelaskan. Kita dapat mengatakan, "Film B direkomendasikan karena memiliki deskripsi cerita yang mirip dengan Film A yang Anda sukai," yang dapat meningkatkan kepercayaan pengguna.
+
+Tidak Ada Masalah untuk Item Baru: Selama sebuah film baru memiliki deskripsi, ia bisa langsung masuk ke dalam sistem rekomendasi tanpa perlu menunggu data rating dari pengguna.
+
+Kekurangan:
+
+Keterbatasan Fitur: Kualitas rekomendasi sangat bergantung pada data deskripsi yang tersedia. Jika deskripsi kurang detail atau tidak representatif, maka rekomendasinya akan kurang relevan.
+
+Minim Kejutan (Low Serendipity): Model ini cenderung merekomendasikan item yang sangat mirip dengan apa yang sudah disukai pengguna. Hal ini membatasi pengguna untuk menemukan kategori atau genre baru yang mungkin juga mereka sukai, menciptakan "gelembung filter" (filter bubble).
+
+Collaborative Filtering
+
+Pendekatan ini merekomendasikan item berdasarkan preferensi dari pengguna lain yang memiliki selera serupa. Dalam proyek ini, data rating (stars_given) dari pengguna (name) terhadap film (book) digunakan untuk membangun model.
+
+Data Loading: Data rating dimuat menggunakan library surprise.
+
+Train-Test Split: Dataset dibagi menjadi data latih dan data uji untuk mengevaluasi performa model.
+
+Model yang Digunakan:
+
+SVD (Singular Value Decomposition): Sebuah algoritma faktorisasi matriks yang populer digunakan dalam sistem rekomendasi. SVD akan menguraikan matriks interaksi pengguna-item menjadi beberapa matriks faktor yang lebih kecil, yang kemudian digunakan untuk memprediksi rating yang belum diberikan oleh pengguna.
+
+KNN (K-Nearest Neighbors): Algoritma ini akan mencari pengguna-pengguna lain yang memiliki kemiripan preferensi (tetangga terdekat) dan menggunakan rating dari tetangga tersebut untuk memberikan rekomendasi.
+
+Kelebihan dan Kekurangan Collaborative Filtering
+
+Kelebihan:
+
+Mampu Memberikan Rekomendasi Lintas Genre: Model ini tidak bergantung pada konten item. Ia dapat menemukan hubungan yang tak terduga antar item (misalnya, penggemar Film A juga menyukai Film Z, meskipun genre keduanya berbeda) dan memberikan rekomendasi yang mengejutkan namun relevan (high serendipity).
+
+Tidak Memerlukan Analisis Konten: Model bekerja murni berdasarkan interaksi pengguna (rating), sehingga tidak memerlukan proses rekayasa fitur yang rumit pada deskripsi atau atribut item.
+
+Kekurangan:
+
+Masalah Cold Start: Ini adalah kelemahan utama. Model kesulitan memberikan rekomendasi untuk pengguna baru yang belum memiliki riwayat rating, atau merekomendasikan item baru yang belum pernah diberi rating oleh siapapun.
+
+Ketersebaran Data (Sparsity): Pada dataset yang besar, matriks interaksi pengguna-item seringkali sangat kosong (setiap pengguna hanya memberi rating pada sebagian kecil item). Hal ini dapat menyulitkan pencarian "tetangga" yang relevan dan dapat menurunkan kualitas rekomendasi.
+
+Kurang Transparan: Lebih sulit untuk menjelaskan mengapa sebuah item direkomendasikan, karena hanya didasarkan pada selera pengguna lain yang dianggap "mirip" secara matematis.
 
 ## Evaluation
 
