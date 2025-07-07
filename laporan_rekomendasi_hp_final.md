@@ -126,7 +126,7 @@ Model yang Digunakan:
 
 Berikut adalah hasil dari sistem rekomendasi content-based filtering:
 
-![Sistem Rekomendasi Content-Based Filtering](Screenshot%202025-07-07%20at%2014.17.06.png)
+![Sistem Rekomendasi Content-Based Filtering](https://drive.google.com/file/d/1SgbhmdJKP2Cs6LM-PSp7GMAWfupW9mg0/view?usp=sharing)
 
 **Kelebihan dan Kekurangan Content-Based Filtering**
 
@@ -151,7 +151,7 @@ Model yang Digunakan:
 
 Berikut adalah hasil dari sistem rekomendasi collaborative filtering:
 
-![Sistem Rekomendasi Collaborative Filtering](Screenshot%202025-07-07%20at%2014.17.06.png)
+![Sistem Rekomendasi Collaborative Filtering](https://drive.google.com/file/d/1OiGF-cxwUhiJwA9gWcncgBs6QdU761By/view?usp=sharing)
 
 **Kelebihan dan Kekurangan Collaborative Filtering**
 
