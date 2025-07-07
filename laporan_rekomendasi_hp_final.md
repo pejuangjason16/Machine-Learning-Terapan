@@ -170,19 +170,25 @@ $$
 \text{cos}(\theta) = \frac{A \cdot B}{\|A\| \cdot \|B\|}
 $$
 
-Di mana:
-- $$ {A \cdot B} $$ adalah hasil perkalian dot product dua vektor teks.
-- $$ {\|A\| \cdot \|B\|} $$ adalah panjang (norm) dari masing-masing vektor.
+Penjelasan:
+- A dan B adalah dua vektor TF-IDF dari teks (review).
+- A · B adalah dot product antara A dan B.
+- ||A|| dan ||B|| adalah panjang (norma) dari masing-masing vektor.
+- Nilai cosine similarity berada dalam rentang 0 sampai 1.
+- Semakin mendekati 1 → semakin mirip isi review secara semantik.
 
 Metrik evaluasi yang digunakan untuk model Collaborative Filtering adalah Root Mean Squared Error (RMSE). RMSE mengukur rata-rata dari kuadrat selisih antara nilai prediksi dan nilai aktual. Semakin kecil nilai RMSE, semakin baik performa model dalam memprediksi rating. Berikut adalah rumusnya:
-\[
-RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^n (\hat{r}_i - r_i)^2}
-\]
 
-Di mana:
-- \( \hat{r}_i \) = rating yang diprediksi model
-- \( r_i \) = rating aktual
-- \( n \) = jumlah prediksi
+$$
+\text{RMSE} = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (\hat{r}_i - r_i)^2}
+$$
+
+Penjelasan:
+- \( \hat{r}_i \): rating yang diprediksi oleh model.
+- \( r_i \): rating asli dari pengguna.
+- n: jumlah data prediksi yang dievaluasi.
+- RMSE menunjukkan rata-rata jarak (dalam kuadrat) antara prediksi dan kenyataan.
+- Nilai RMSE semakin kecil → prediksi model semakin akurat.
 
 Interpretasi & Analisis:
 
