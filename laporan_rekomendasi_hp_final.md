@@ -184,27 +184,14 @@ $$
 $$
 
 Penjelasan:
-- \( \hat{r}_i \): rating yang diprediksi oleh model untuk item ke-i.
-- \( r_i \): rating aktual yang diberikan pengguna untuk item ke-i.
-- \( n \): jumlah total data prediksi yang dievaluasi.
+- ri_hat: rating yang diprediksi oleh model untuk item ke-i.
+- ri: rating aktual yang diberikan pengguna untuk item ke-i.
+- n : jumlah total data prediksi yang dievaluasi.
 - RMSE menunjukkan rata-rata jarak (dalam kuadrat) antara prediksi dan kenyataan.
 - Nilai RMSE semakin kecil → prediksi model semakin akurat.
 
-Interpretasi & Analisis:
-
-✅ 1. Rekomendasi Konsisten secara Nada & Sentimen
-Semua review hasil rekomendasi juga memiliki nada yang positif, hangat, dan penuh pujian, mirip dengan review awal.
-Kata-kata seperti "captivating", "very good", "clever conjuration", dan "magical tone" menunjukkan kemiripan gaya bahasa dengan review awal.
-✅ 2. Kemiripan Emosi dan Gaya Tulisan
-Algoritma TF-IDF + Cosine Similarity mendeteksi kesamaan dalam deskripsi ulasan, terutama pada frasa seperti:
-"very good", "charming", "spellbinding", "enchantment", dll.
-Ini menunjukkan bahwa model berhasil merekomendasikan review yang selaras secara semantik.
-✅ 3. Buku yang Direkomendasikan Relevan
-Dua dari tiga rekomendasi berasal dari "Chamber of Secrets", satu dari "Sorcerer's Stone" — keduanya adalah buku dengan tone petualangan dan sihir ringan, cocok dengan deskripsi awal.
-Hal ini memperkuat bahwa sistem mendeteksi kemiripan konteks cerita dan respon emosional pembaca.
-
 **Evaluasi Content-Based Filtering (CBF)**
-- Cosine Similarity untuk 3 rekomendasi: [0.2029, 0.1764, 0.1495]
+- Cosine Similarity untuk 3 rekomendasi: [0.2029, 0.1764, 0.1495], ini menunjukkan review yang direkomendasikan memiliki kemiripan moderat dengan review awal.
 - Rata-rata Cosine Similarity: 0.1763
 - Hal ini menunjukkan bahwa sistem berhasil memilih review lain yang memiliki kemiripan makna dan gaya penulisan dengan review awal.
 - Nilai cosine similarity > 0.15 dalam teks panjang menunjukkan adanya tema/kata kunci yang serupa antar review.
@@ -212,13 +199,8 @@ Hal ini memperkuat bahwa sistem mendeteksi kemiripan konteks cerita dan respon e
 
 **Evaluasi Collaborative Filtering (SVD)**
 - RMSE (Root Mean Squared Error): 0.8562
-- RMSE mengukur rata-rata kesalahan prediksi model terhadap rating asli pengguna.
 - Dengan skala rating 1–5, nilai 0.8562 menunjukkan bahwa rata-rata prediksi model hanya meleset sekitar 0.86 poin.
-- Ini termasuk akurat untuk dataset kecil seperti ulasan film Harry Potter.
+- Ini bisa terbilang cukup akurat untuk dataset kecil seperti ulasan film Harry Potter.
 - Nilai ini menandakan bahwa model SVD cukup andal dalam memahami pola rating pengguna dan bisa digunakan untuk rekomendasi yang layak.
-
-- Dilakukan evaluasi manual dengan melihat seberapa relevan rekomendasi yang diberikan dengan review asli.
-- Pengamatan visual menunjukkan bahwa review dengan isi dan bintang yang mirip direkomendasikan bersama.
-- Rekomendasi yang dihasilkan dengan Cosine Similarity menunjukkan kecenderungan memilih review dengan deskripsi sentiment serupa.
 
 **---Ini adalah bagian akhir laporan---**
