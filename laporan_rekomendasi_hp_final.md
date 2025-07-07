@@ -240,7 +240,7 @@ Penjelasan:
   - Sekitar 1 dari 4 rekomendasi masuk ke kategori yang dianggap relevan.
   - Ini menunjukkan bahwa model CBF memiliki kemampuan cukup baik dalam memilih konten yang serupa dan relevan bagi pengguna.
 
-- "Recall@3: 0.1690" artinya Dari seluruh review yang seharusnya relevan (review lain milik user tersebut), model berhasil merekomendasikan 16.9% di antaranya.
+- "Recall@3: 0.1690", artinya Dari seluruh review yang seharusnya relevan (review lain milik user tersebut), model berhasil merekomendasikan 16.9% di antaranya.
   - Model tidak mampu menjangkau semua item relevan, tapi masih berhasil meng-cover sebagian.
   - Ini merupakan hal yang normal dalam skenario dengan jumlah review relevan terbatas dan hanya mengambil Top-3 rekomendasi.
 
