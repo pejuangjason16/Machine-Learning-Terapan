@@ -124,6 +124,10 @@ Model yang Digunakan:
 
 *Cosine Similarity:* Setelah deskripsi diubah menjadi vektor numerik, cosine similarity digunakan untuk mengukur kemiripan antara dua film. Semakin tinggi nilai cosine similarity, semakin mirip kedua film tersebut.
 
+Berikut adalah hasil dari sistem rekomendasi content-based filtering:
+
+![Sistem Rekomendasi Content-Based Filtering](Screenshot%202025-07-07%20at%2014.17.06.png)
+
 **Kelebihan dan Kekurangan Content-Based Filtering**
 
 **Kelebihan:**
@@ -135,6 +139,8 @@ Model yang Digunakan:
 - Keterbatasan Fitur: Kualitas rekomendasi sangat bergantung pada data deskripsi yang tersedia. Jika deskripsi kurang detail atau tidak representatif, maka rekomendasinya akan kurang relevan.
 - Minim Kejutan (Low Serendipity): Model ini cenderung merekomendasikan item yang sangat mirip dengan apa yang sudah disukai pengguna. Hal ini membatasi pengguna untuk menemukan kategori atau genre baru yang mungkin juga mereka sukai, menciptakan "gelembung filter" (filter bubble).
 
+---
+
 ***Collaborative Filtering***
 
 Pendekatan ini merekomendasikan item berdasarkan preferensi dari pengguna lain yang memiliki selera serupa. Dalam proyek ini, data rating (stars_given) dari pengguna (name) terhadap film (book) digunakan untuk membangun model.
@@ -142,6 +148,10 @@ Pendekatan ini merekomendasikan item berdasarkan preferensi dari pengguna lain y
 Model yang Digunakan:
 
 *SVD (Singular Value Decomposition):* Sebuah algoritma faktorisasi matriks yang populer digunakan dalam sistem rekomendasi. SVD akan menguraikan matriks interaksi pengguna-item menjadi beberapa matriks faktor yang lebih kecil, yang kemudian digunakan untuk memprediksi rating yang belum diberikan oleh pengguna.
+
+Berikut adalah hasil dari sistem rekomendasi collaborative filtering:
+
+![Sistem Rekomendasi Collaborative Filtering](Screenshot%202025-07-07%20at%2014.17.06.png)
 
 **Kelebihan dan Kekurangan Collaborative Filtering**
 
@@ -155,6 +165,8 @@ Model yang Digunakan:
 - Masalah Cold Start: Ini adalah kelemahan utama. Model kesulitan memberikan rekomendasi untuk pengguna baru yang belum memiliki riwayat rating, atau merekomendasikan item baru yang belum pernah diberi rating oleh siapapun.
 - Ketersebaran Data (Sparsity): Pada dataset yang besar, matriks interaksi pengguna-item seringkali sangat kosong (setiap pengguna hanya memberi rating pada sebagian kecil item). Hal ini dapat menyulitkan pencarian "tetangga" yang relevan dan dapat menurunkan kualitas rekomendasi.
 - Kurang Transparan: Lebih sulit untuk menjelaskan mengapa sebuah item direkomendasikan, karena hanya didasarkan pada selera pengguna lain yang dianggap "mirip" secara matematis.
+
+---
 
 ## Evaluation
 
