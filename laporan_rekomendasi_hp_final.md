@@ -78,6 +78,9 @@ Tahap eksplorasi data (EDA) dan analisis statistik deskriptif sangat penting unt
 - Mengonversi kolom `date` ke format datetime menggunakan format spesifik `%b%d,%Y`.
 - Tangani nilai null pada `stars_given` dan `description` jika diperlukan.
 - Tambahkan kolom `month` dari `date` untuk analisis tren waktu.
+- Melakukan Data Loading dengan menggunakan library surprise untuk memuat Data `rating`.
+- Melakukan split Train-Test dengan membagi Dataset menjadi data latih dan data uji untuk mengevaluasi performa model.
+- Mengubah teks deskripsi `description` film menjadi matriks representasi numerik menggunakan TF-IDF Vectorizer sehingga dapat mengidentifikasi kata-kata kunci yang penting dari setiap deskripsi.
 
 ```python
 import pandas as pd
@@ -99,6 +102,12 @@ df['month'] = df['date'].dt.to_period('M')
 
 # Cek dan tangani missing value
 print(df.isnull().sum())
+
+# Menyimpan split untuk evaluasi
+trainset_eval, testset_eval = train_test_split(data, test_size=0.2, random_state=42)
+
+# TF-IDF dari kolom description
+tfidf_matrix = vectorizer.fit_transform(df['description'])
 ```
 
 ## Modeling
@@ -111,14 +120,9 @@ Dalam proyek ini, dua pendekatan sistem rekomendasi diimplementasikan: Content-B
 
 Pendekatan ini merekomendasikan item berdasarkan kemiripan atribut atau konten dari item tersebut. Dalam kasus ini, atribut yang digunakan adalah deskripsi dari setiap film.
 
-- TF-IDF Vectorizer: Teknik ini digunakan untuk mengubah teks deskripsi film menjadi matriks representasi numerik. TF-IDF akan memberikan bobot yang lebih tinggi pada kata-kata yang sering muncul dalam sebuah dokumen (film) tetapi jarang muncul di dokumen lain, sehingga dapat mengidentifikasi kata-kata kunci yang penting dari setiap deskripsi.
+Model yang Digunakan:
 
-- Cosine Similarity: Setelah deskripsi diubah menjadi vektor numerik, cosine similarity digunakan untuk mengukur kemiripan antara dua film. Semakin tinggi nilai cosine similarity, semakin mirip kedua film tersebut.
-
-- Implementasi:
-  1. Membuat matriks TF-IDF dari kolom description.
-  2. Menghitung matriks cosine similarity dari matriks TF-IDF.
-  3. Membuat fungsi yang akan memberikan rekomendasi 5 film teratas berdasarkan kemiripan deskripsi.
+*Cosine Similarity:* Setelah deskripsi diubah menjadi vektor numerik, cosine similarity digunakan untuk mengukur kemiripan antara dua film. Semakin tinggi nilai cosine similarity, semakin mirip kedua film tersebut.
 
 **Kelebihan dan Kekurangan Content-Based Filtering**
 
@@ -135,13 +139,9 @@ Pendekatan ini merekomendasikan item berdasarkan kemiripan atribut atau konten d
 
 Pendekatan ini merekomendasikan item berdasarkan preferensi dari pengguna lain yang memiliki selera serupa. Dalam proyek ini, data rating (stars_given) dari pengguna (name) terhadap film (book) digunakan untuk membangun model.
 
-- Data Loading: Data rating dimuat menggunakan library surprise.
-
-- Train-Test Split: Dataset dibagi menjadi data latih dan data uji untuk mengevaluasi performa model.
-
 Model yang Digunakan:
 
-SVD (Singular Value Decomposition): Sebuah algoritma faktorisasi matriks yang populer digunakan dalam sistem rekomendasi. SVD akan menguraikan matriks interaksi pengguna-item menjadi beberapa matriks faktor yang lebih kecil, yang kemudian digunakan untuk memprediksi rating yang belum diberikan oleh pengguna.
+*SVD (Singular Value Decomposition):* Sebuah algoritma faktorisasi matriks yang populer digunakan dalam sistem rekomendasi. SVD akan menguraikan matriks interaksi pengguna-item menjadi beberapa matriks faktor yang lebih kecil, yang kemudian digunakan untuk memprediksi rating yang belum diberikan oleh pengguna.
 
 **Kelebihan dan Kekurangan Collaborative Filtering**
 
