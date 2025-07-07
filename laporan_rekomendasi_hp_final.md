@@ -198,8 +198,8 @@ Penjelasan:
 - Artinya sistem CBF bekerja sesuai harapan dalam menemukan ulasan yang sejenis secara konten.
 
 **Evaluasi Collaborative Filtering (SVD)**
-- RMSE (Root Mean Squared Error): 0.8562
-- Dengan skala rating 1–5, nilai 0.8562 menunjukkan bahwa rata-rata prediksi model hanya meleset sekitar 0.86 poin.
+- RMSE (Root Mean Squared Error): 0.8544
+- Dengan skala rating 1–5, nilai 0.8544 menunjukkan bahwa rata-rata prediksi model hanya meleset sekitar 0.85 poin.
 - Ini bisa terbilang cukup akurat untuk dataset kecil seperti ulasan film Harry Potter.
 - Nilai ini menandakan bahwa model SVD cukup andal dalam memahami pola rating pengguna dan bisa digunakan untuk rekomendasi yang layak.
 
