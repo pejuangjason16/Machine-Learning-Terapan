@@ -24,9 +24,9 @@ Dengan semakin banyaknya data yang tersedia terkait film, seperti rating, pendap
 
 ### Goals
 
-- Tujuan 1: Untuk mengetahui film Harry Potter manakah yang paling disukai berdasarkan dataset yang dimiliki.
-- Tujuan 2: Mengidentifikasi buku favorit berdasarkan data rating.
-- Tujuan 3: Mengembangkan sistem rekomendasi berbasis konten ulasan atau fitur numerik.
+- Tujuan 1: Melakukan eksplorasi dan pemahaman lebih dalam mengenai dataset yang digunakan agar dapat mengetahui film Harry Potter manakah yang paling disukai/direkomendasikan berdasarkan dataset yang digunakan.
+- Tujuan 2: Membangun model-model sistem rekomendasi terbaik berdasarkan Content-Based Filtering dan Collaborative Filtering untuk menghasilkan rekomendasi film Harry Potter yang terbaik yang dibuat sampai sekarang.
+- Tujuan 3: Melakukan evaluasi kinerja pada model-model yang dibangun untuk melihat hasil evaluasi dan performa dari sistem rekomendasi yang dibangun memang menentukan kualitas dari rekomendasi yang diberikan.
 
 ### Solution statements
 
