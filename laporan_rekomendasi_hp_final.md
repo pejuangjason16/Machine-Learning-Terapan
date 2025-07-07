@@ -166,13 +166,13 @@ Metrik evaluasi yang digunakan untuk model Content-Based Filtering adalah Cosine
 
 Cosine Similarity antara dua vektor A dan B:
 
-\[
+$$
 \text{cos}(\theta) = \frac{A \cdot B}{\|A\| \cdot \|B\|}
-\]
+$$
 
 Di mana:
-- \( A \cdot B \) = hasil dot product antara dua vektor
-- \( \|A\| \) dan \( \|B\| \) adalah norma (panjang) masing-masing vektor
+- \( A \cdot B \) adalah hasil perkalian dot product dua vektor teks.
+- \( \|A\| \) dan \( \|B\| \) adalah panjang (norma) dari masing-masing vektor.
 
 Metrik evaluasi yang digunakan untuk model Collaborative Filtering adalah Root Mean Squared Error (RMSE). RMSE mengukur rata-rata dari kuadrat selisih antara nilai prediksi dan nilai aktual. Semakin kecil nilai RMSE, semakin baik performa model dalam memprediksi rating. Berikut adalah rumusnya:
 \[
