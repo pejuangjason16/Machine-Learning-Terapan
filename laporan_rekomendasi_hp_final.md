@@ -203,20 +203,24 @@ Evaluasi dilakukan pada model Collaborative Filtering untuk mengukur seberapa ba
 
 **Metrik Evaluasi**
 
-Metrik evaluasi yang digunakan untuk model Content-Based Filtering adalah Cosine similarity yang mengukur kemiripan antara dua vektor berdasarkan sudut di antara mereka, bukan nilai absolut. Ini sangat berguna untuk teks yang sudah ditransformasi ke vektor (misalnya oleh TF-IDF). Berikut adalah rumusnya:
+Metrik evaluasi yang digunakan untuk model Content-Based Filtering adalah Precision@K dan Recall@K yang mengukur performa sistem dalam menyarankan item relevan di antara Top-K hasil rekomendasi. Berikut adalah rumusnya:
 
-Cosine Similarity antara dua vektor A dan B:
+**Precision@K**:
 
 $$
-\text{cos}(\theta) = \frac{A \cdot B}{\|A\| \cdot \|B\|}
+\text{Precision@K} = \frac{\text{Jumlah item relevan di Top-K}}{K}
+$$
+
+**Recall@K**:
+
+$$
+\text{Recall@K} = \frac{\text{Jumlah item relevan di Top-K}}{\text{Total item relevan}}
 $$
 
 Penjelasan:
-- A dan B adalah dua vektor TF-IDF dari teks (review).
-- A · B adalah dot product antara A dan B.
-- ||A|| dan ||B|| adalah panjang (norma) dari masing-masing vektor.
-- Nilai cosine similarity berada dalam rentang 0 sampai 1.
-- Semakin mendekati 1 → semakin mirip isi review secara semantik.
+- Precision@K mengukur **akurasi**: seberapa banyak rekomendasi yang benar dari total yang disarankan.
+- Recall@K mengukur **cakupan**: seberapa besar porsi item relevan berhasil ditangkap oleh sistem.
+- Nilai berkisar antara 0 dan 1, makin tinggi makin baik.
 
 Metrik evaluasi yang digunakan untuk model Collaborative Filtering adalah Root Mean Squared Error (RMSE). RMSE mengukur rata-rata dari kuadrat selisih antara nilai prediksi dan nilai aktual. Semakin kecil nilai RMSE, semakin baik performa model dalam memprediksi rating. Berikut adalah rumusnya:
 
@@ -232,11 +236,13 @@ Penjelasan:
 - Nilai RMSE semakin kecil → prediksi model semakin akurat.
 
 **Evaluasi Content-Based Filtering (CBF)**
-- Cosine Similarity untuk 3 rekomendasi: [0.2029, 0.1764, 0.1495], ini menunjukkan review yang direkomendasikan memiliki kemiripan moderat dengan review awal.
-- Rata-rata Cosine Similarity: 0.1763
-- Hal ini menunjukkan bahwa sistem berhasil memilih review lain yang memiliki kemiripan makna dan gaya penulisan dengan review awal.
-- Nilai cosine similarity > 0.15 dalam teks panjang menunjukkan adanya tema/kata kunci yang serupa antar review.
-- Artinya sistem CBF bekerja sesuai harapan dalam menemukan ulasan yang sejenis secara konten.
+- "Precision @3: 0.2486", artinya dari 3 rekomendasi teratas yang diberikan untuk setiap review, rata-rata sekitar 24.86% benar-benar dianggap relevan (yaitu berasal dari review lain oleh user yang sama).
+  - Sekitar 1 dari 4 rekomendasi masuk ke kategori yang dianggap relevan.
+  - Ini menunjukkan bahwa model CBF memiliki kemampuan cukup baik dalam memilih konten yang serupa dan relevan bagi pengguna.
+
+- "Recall@3: 0.1690" artinya Dari seluruh review yang seharusnya relevan (review lain milik user tersebut), model berhasil merekomendasikan 16.9% di antaranya.
+  - Model tidak mampu menjangkau semua item relevan, tapi masih berhasil meng-cover sebagian.
+  - Ini merupakan hal yang normal dalam skenario dengan jumlah review relevan terbatas dan hanya mengambil Top-3 rekomendasi.
 
 **Evaluasi Collaborative Filtering (SVD)**
 - RMSE (Root Mean Squared Error): 0.8544
