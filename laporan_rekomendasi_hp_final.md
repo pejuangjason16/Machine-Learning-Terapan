@@ -132,6 +132,8 @@ Berikut adalah hasil dari sistem rekomendasi content-based filtering:
 | 8     | Harry Potter and the Sorcerer's Stone     | Jayson  | 4.0    | (A-) 83% \| Very GoodNotes: Despite a weak clim...     |
 | 365   | Harry Potter and the Chamber of Secrets   | Jayson  | 4.0    | (A-) 83% \| Very GoodNotes: A clever conjuration...    |
 
+---
+
 **Kelebihan dan Kekurangan Content-Based Filtering**
 
 **Kelebihan:**
@@ -155,28 +157,30 @@ Model yang Digunakan:
 
 Berikut adalah hasil dari sistem rekomendasi collaborative filtering:
 
-User: MirandaReads  
+**User: MirandaReads**  
 - Harry Potter and the Cursed Child: Parts One and Two (prediksi: 3.10)
 
-User: Lora  
+**User: Lora**  
 - Harry Potter and the Goblet of Fire (prediksi: 4.77)  
 - Harry Potter and the Half-Blood Prince (prediksi: 4.73)  
 - Harry Potter and the Deathly Hallows (prediksi: 4.72)
 
-User: ★Jess  
+**User: ★Jess**  
 - Harry Potter and the Goblet of Fire (prediksi: 5.00)  
 - Harry Potter and the Prisoner of Azkaban (prediksi: 4.74)  
 - Harry Potter and the Half-Blood Prince (prediksi: 4.73)
 
-User: Matthew 
+**User: Matthew** 
 - Harry Potter and the Goblet of Fire (prediksi: 4.96)  
 - Harry Potter and the Half-Blood Prince (prediksi: 4.84)  
 - Harry Potter and the Order of the Phoenix (prediksi: 4.65)
 
-User: Khanh,firstofhername,motherofbunnies 
+**User: Khanh,firstofhername,motherofbunnies** 
 - Harry Potter and the Half-Blood Prince (prediksi: 4.86)  
 - Harry Potter and the Goblet of Fire (prediksi: 4.84)  
 - Harry Potter and the Deathly Hallows (prediksi: 4.77)
+
+---
 
 **Kelebihan dan Kekurangan Collaborative Filtering**
 
