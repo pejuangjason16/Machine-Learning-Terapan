@@ -120,7 +120,7 @@ Pendekatan ini merekomendasikan item berdasarkan kemiripan atribut atau konten d
   2. Menghitung matriks cosine similarity dari matriks TF-IDF.
   3. Membuat fungsi yang akan memberikan rekomendasi 5 film teratas berdasarkan kemiripan deskripsi.
 
-Kelebihan dan Kekurangan Content-Based Filtering
+**Kelebihan dan Kekurangan Content-Based Filtering**
 
 **Kelebihan:**
 - Independensi Pengguna: Model tidak memerlukan data dari pengguna lain untuk memberikan rekomendasi. Rekomendasi untuk satu pengguna tidak dipengaruhi oleh pengguna lain, sehingga dapat mengatasi masalah untuk pengguna baru (user cold start).
@@ -143,7 +143,7 @@ Model yang Digunakan:
 
 SVD (Singular Value Decomposition): Sebuah algoritma faktorisasi matriks yang populer digunakan dalam sistem rekomendasi. SVD akan menguraikan matriks interaksi pengguna-item menjadi beberapa matriks faktor yang lebih kecil, yang kemudian digunakan untuk memprediksi rating yang belum diberikan oleh pengguna.
 
-Kelebihan dan Kekurangan Collaborative Filtering
+**Kelebihan dan Kekurangan Collaborative Filtering**
 
 **Kelebihan:**
 
@@ -157,6 +157,59 @@ Kelebihan dan Kekurangan Collaborative Filtering
 - Kurang Transparan: Lebih sulit untuk menjelaskan mengapa sebuah item direkomendasikan, karena hanya didasarkan pada selera pengguna lain yang dianggap "mirip" secara matematis.
 
 ## Evaluation
+
+Evaluasi dilakukan pada model Collaborative Filtering untuk mengukur seberapa baik model dapat memprediksi rating yang akan diberikan oleh pengguna.
+
+**Metrik Evaluasi**
+
+Metrik evaluasi yang digunakan untuk model Content-Based Filtering adalah Cosine similarity yang mengukur kemiripan antara dua vektor berdasarkan sudut di antara mereka, bukan nilai absolut. Ini sangat berguna untuk teks yang sudah ditransformasi ke vektor (misalnya oleh TF-IDF). Berikut adalah rumusnya:
+
+Cosine Similarity antara dua vektor A dan B:
+
+\[
+\text{cos}(\theta) = \frac{A \cdot B}{\|A\| \cdot \|B\|}
+\]
+
+Di mana:
+- \( A \cdot B \) = hasil dot product antara dua vektor
+- \( \|A\| \) dan \( \|B\| \) adalah norma (panjang) masing-masing vektor
+
+Metrik evaluasi yang digunakan untuk model Collaborative Filtering adalah Root Mean Squared Error (RMSE). RMSE mengukur rata-rata dari kuadrat selisih antara nilai prediksi dan nilai aktual. Semakin kecil nilai RMSE, semakin baik performa model dalam memprediksi rating. Berikut adalah rumusnya:
+\[
+RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^n (\hat{r}_i - r_i)^2}
+\]
+
+Di mana:
+- \( \hat{r}_i \) = rating yang diprediksi model
+- \( r_i \) = rating aktual
+- \( n \) = jumlah prediksi
+
+Interpretasi & Analisis:
+
+✅ 1. Rekomendasi Konsisten secara Nada & Sentimen
+Semua review hasil rekomendasi juga memiliki nada yang positif, hangat, dan penuh pujian, mirip dengan review awal.
+Kata-kata seperti "captivating", "very good", "clever conjuration", dan "magical tone" menunjukkan kemiripan gaya bahasa dengan review awal.
+✅ 2. Kemiripan Emosi dan Gaya Tulisan
+Algoritma TF-IDF + Cosine Similarity mendeteksi kesamaan dalam deskripsi ulasan, terutama pada frasa seperti:
+"very good", "charming", "spellbinding", "enchantment", dll.
+Ini menunjukkan bahwa model berhasil merekomendasikan review yang selaras secara semantik.
+✅ 3. Buku yang Direkomendasikan Relevan
+Dua dari tiga rekomendasi berasal dari "Chamber of Secrets", satu dari "Sorcerer's Stone" — keduanya adalah buku dengan tone petualangan dan sihir ringan, cocok dengan deskripsi awal.
+Hal ini memperkuat bahwa sistem mendeteksi kemiripan konteks cerita dan respon emosional pembaca.
+
+**Evaluasi Content-Based Filtering (CBF)**
+- Cosine Similarity untuk 3 rekomendasi: [0.2029, 0.1764, 0.1495]
+- Rata-rata Cosine Similarity: 0.1763
+- Hal ini menunjukkan bahwa sistem berhasil memilih review lain yang memiliki kemiripan makna dan gaya penulisan dengan review awal.
+- Nilai cosine similarity > 0.15 dalam teks panjang menunjukkan adanya tema/kata kunci yang serupa antar review.
+- Artinya sistem CBF bekerja sesuai harapan dalam menemukan ulasan yang sejenis secara konten.
+
+**Evaluasi Collaborative Filtering (SVD)**
+- RMSE (Root Mean Squared Error): 0.8562
+- RMSE mengukur rata-rata kesalahan prediksi model terhadap rating asli pengguna.
+- Dengan skala rating 1–5, nilai 0.8562 menunjukkan bahwa rata-rata prediksi model hanya meleset sekitar 0.86 poin.
+- Ini termasuk akurat untuk dataset kecil seperti ulasan film Harry Potter.
+- Nilai ini menandakan bahwa model SVD cukup andal dalam memahami pola rating pengguna dan bisa digunakan untuk rekomendasi yang layak.
 
 - Dilakukan evaluasi manual dengan melihat seberapa relevan rekomendasi yang diberikan dengan review asli.
 - Pengamatan visual menunjukkan bahwa review dengan isi dan bintang yang mirip direkomendasikan bersama.
