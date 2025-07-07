@@ -171,8 +171,8 @@ $$
 $$
 
 Di mana:
-- {A \cdot B} adalah hasil perkalian dot product dua vektor teks.
-- {\|A\| \cdot \|B\|} adalah panjang (norm) dari masing-masing vektor.
+- $$ {A \cdot B} $$ adalah hasil perkalian dot product dua vektor teks.
+- $$ {\|A\| \cdot \|B\|} $$ adalah panjang (norm) dari masing-masing vektor.
 
 Metrik evaluasi yang digunakan untuk model Collaborative Filtering adalah Root Mean Squared Error (RMSE). RMSE mengukur rata-rata dari kuadrat selisih antara nilai prediksi dan nilai aktual. Semakin kecil nilai RMSE, semakin baik performa model dalam memprediksi rating. Berikut adalah rumusnya:
 \[
