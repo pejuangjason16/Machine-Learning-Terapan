@@ -107,7 +107,7 @@ print(df.isnull().sum())
 
 Dalam proyek ini, dua pendekatan sistem rekomendasi diimplementasikan: Content-Based Filtering dan Collaborative Filtering. Masing-masing pendekatan memiliki kelebihan dan kekurangan yang menjadi pertimbangan dalam pemilihan solusi.
 
-**Content-Based Filtering
+***Content-Based Filtering***
 
 Pendekatan ini merekomendasikan item berdasarkan kemiripan atribut atau konten dari item tersebut. Dalam kasus ini, atribut yang digunakan adalah deskripsi dari setiap film.
 
@@ -122,49 +122,39 @@ Pendekatan ini merekomendasikan item berdasarkan kemiripan atribut atau konten d
 
 Kelebihan dan Kekurangan Content-Based Filtering
 
-Kelebihan:
+**Kelebihan:**
+- Independensi Pengguna: Model tidak memerlukan data dari pengguna lain untuk memberikan rekomendasi. Rekomendasi untuk satu pengguna tidak dipengaruhi oleh pengguna lain, sehingga dapat mengatasi masalah untuk pengguna baru (user cold start).
+- Transparansi: Rekomendasi yang diberikan mudah dijelaskan. Kita dapat mengatakan, "Film B direkomendasikan karena memiliki deskripsi cerita yang mirip dengan Film A yang Anda sukai," yang dapat meningkatkan kepercayaan pengguna.
+- Tidak Ada Masalah untuk Item Baru: Selama sebuah film baru memiliki deskripsi, ia bisa langsung masuk ke dalam sistem rekomendasi tanpa perlu menunggu data rating dari pengguna.
 
-Independensi Pengguna: Model tidak memerlukan data dari pengguna lain untuk memberikan rekomendasi. Rekomendasi untuk satu pengguna tidak dipengaruhi oleh pengguna lain, sehingga dapat mengatasi masalah untuk pengguna baru (user cold start).
+**Kekurangan:**
+- Keterbatasan Fitur: Kualitas rekomendasi sangat bergantung pada data deskripsi yang tersedia. Jika deskripsi kurang detail atau tidak representatif, maka rekomendasinya akan kurang relevan.
+- Minim Kejutan (Low Serendipity): Model ini cenderung merekomendasikan item yang sangat mirip dengan apa yang sudah disukai pengguna. Hal ini membatasi pengguna untuk menemukan kategori atau genre baru yang mungkin juga mereka sukai, menciptakan "gelembung filter" (filter bubble).
 
-Transparansi: Rekomendasi yang diberikan mudah dijelaskan. Kita dapat mengatakan, "Film B direkomendasikan karena memiliki deskripsi cerita yang mirip dengan Film A yang Anda sukai," yang dapat meningkatkan kepercayaan pengguna.
-
-Tidak Ada Masalah untuk Item Baru: Selama sebuah film baru memiliki deskripsi, ia bisa langsung masuk ke dalam sistem rekomendasi tanpa perlu menunggu data rating dari pengguna.
-
-Kekurangan:
-
-Keterbatasan Fitur: Kualitas rekomendasi sangat bergantung pada data deskripsi yang tersedia. Jika deskripsi kurang detail atau tidak representatif, maka rekomendasinya akan kurang relevan.
-
-Minim Kejutan (Low Serendipity): Model ini cenderung merekomendasikan item yang sangat mirip dengan apa yang sudah disukai pengguna. Hal ini membatasi pengguna untuk menemukan kategori atau genre baru yang mungkin juga mereka sukai, menciptakan "gelembung filter" (filter bubble).
-
-Collaborative Filtering
+***Collaborative Filtering***
 
 Pendekatan ini merekomendasikan item berdasarkan preferensi dari pengguna lain yang memiliki selera serupa. Dalam proyek ini, data rating (stars_given) dari pengguna (name) terhadap film (book) digunakan untuk membangun model.
 
-Data Loading: Data rating dimuat menggunakan library surprise.
+- Data Loading: Data rating dimuat menggunakan library surprise.
 
-Train-Test Split: Dataset dibagi menjadi data latih dan data uji untuk mengevaluasi performa model.
+- Train-Test Split: Dataset dibagi menjadi data latih dan data uji untuk mengevaluasi performa model.
 
 Model yang Digunakan:
 
 SVD (Singular Value Decomposition): Sebuah algoritma faktorisasi matriks yang populer digunakan dalam sistem rekomendasi. SVD akan menguraikan matriks interaksi pengguna-item menjadi beberapa matriks faktor yang lebih kecil, yang kemudian digunakan untuk memprediksi rating yang belum diberikan oleh pengguna.
 
-KNN (K-Nearest Neighbors): Algoritma ini akan mencari pengguna-pengguna lain yang memiliki kemiripan preferensi (tetangga terdekat) dan menggunakan rating dari tetangga tersebut untuk memberikan rekomendasi.
-
 Kelebihan dan Kekurangan Collaborative Filtering
 
-Kelebihan:
+**Kelebihan:**
 
-Mampu Memberikan Rekomendasi Lintas Genre: Model ini tidak bergantung pada konten item. Ia dapat menemukan hubungan yang tak terduga antar item (misalnya, penggemar Film A juga menyukai Film Z, meskipun genre keduanya berbeda) dan memberikan rekomendasi yang mengejutkan namun relevan (high serendipity).
+- Mampu Memberikan Rekomendasi Lintas Genre: Model ini tidak bergantung pada konten item. Ia dapat menemukan hubungan yang tak terduga antar item (misalnya, penggemar Film A juga menyukai Film Z, meskipun genre keduanya berbeda) dan memberikan rekomendasi yang mengejutkan namun relevan (high serendipity).
+- Tidak Memerlukan Analisis Konten: Model bekerja murni berdasarkan interaksi pengguna (rating), sehingga tidak memerlukan proses rekayasa fitur yang rumit pada deskripsi atau atribut item.
 
-Tidak Memerlukan Analisis Konten: Model bekerja murni berdasarkan interaksi pengguna (rating), sehingga tidak memerlukan proses rekayasa fitur yang rumit pada deskripsi atau atribut item.
+**Kekurangan:**
 
-Kekurangan:
-
-Masalah Cold Start: Ini adalah kelemahan utama. Model kesulitan memberikan rekomendasi untuk pengguna baru yang belum memiliki riwayat rating, atau merekomendasikan item baru yang belum pernah diberi rating oleh siapapun.
-
-Ketersebaran Data (Sparsity): Pada dataset yang besar, matriks interaksi pengguna-item seringkali sangat kosong (setiap pengguna hanya memberi rating pada sebagian kecil item). Hal ini dapat menyulitkan pencarian "tetangga" yang relevan dan dapat menurunkan kualitas rekomendasi.
-
-Kurang Transparan: Lebih sulit untuk menjelaskan mengapa sebuah item direkomendasikan, karena hanya didasarkan pada selera pengguna lain yang dianggap "mirip" secara matematis.
+- Masalah Cold Start: Ini adalah kelemahan utama. Model kesulitan memberikan rekomendasi untuk pengguna baru yang belum memiliki riwayat rating, atau merekomendasikan item baru yang belum pernah diberi rating oleh siapapun.
+- Ketersebaran Data (Sparsity): Pada dataset yang besar, matriks interaksi pengguna-item seringkali sangat kosong (setiap pengguna hanya memberi rating pada sebagian kecil item). Hal ini dapat menyulitkan pencarian "tetangga" yang relevan dan dapat menurunkan kualitas rekomendasi.
+- Kurang Transparan: Lebih sulit untuk menjelaskan mengapa sebuah item direkomendasikan, karena hanya didasarkan pada selera pengguna lain yang dianggap "mirip" secara matematis.
 
 ## Evaluation
 
