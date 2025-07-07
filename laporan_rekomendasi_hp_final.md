@@ -184,9 +184,9 @@ $$
 $$
 
 Penjelasan:
-- hat_r_i: rating yang diprediksi oleh model.
-- r_i: rating asli dari pengguna.
-- n: jumlah data prediksi yang dievaluasi.
+- \( \hat{r}_i \): rating yang diprediksi oleh model untuk item ke-i.
+- \( r_i \): rating aktual yang diberikan pengguna untuk item ke-i.
+- \( n \): jumlah total data prediksi yang dievaluasi.
 - RMSE menunjukkan rata-rata jarak (dalam kuadrat) antara prediksi dan kenyataan.
 - Nilai RMSE semakin kecil → prediksi model semakin akurat.
 
