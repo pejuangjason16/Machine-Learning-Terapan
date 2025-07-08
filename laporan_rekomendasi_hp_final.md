@@ -14,7 +14,7 @@ Dengan semakin banyaknya data yang tersedia terkait film, seperti rating, pendap
 
 ### Problem Statements
 
-- Pernyataan Masalah 1: Film Harry Potter seri manakah yang paling disukai berdasarkan dataset ulasan Film Harry Potter yang digunakan
+- Pernyataan Masalah 1: Film Harry Potter seri manakah yang paling disukai berdasarkan dataset ulasan Film Harry Potter yang digunakan?
   - Film Harry Potter terdiri dari banyak seri yang masing-masing seri nya memiliki tempat tertentu dalam hati para penggemar yang mana basis penggemarnya pun sangat besar.
 
 - Pernyataan Masalah 2: Bagaimana sistem rekomendasi film yang dibangun mampu membantu para penonton baru dan calon penggemar baru untuk menonton seri film Harry Potter yang paling direkomendasikan?
@@ -77,15 +77,34 @@ Tahap eksplorasi data (EDA) dan analisis statistik deskriptif sangat penting unt
 - Membersihkan kolom `likes` dari string " likes" dan tanda koma, lalu ubah ke integer.
 - Mengonversi kolom `date` ke format datetime menggunakan format spesifik `%b%d,%Y`.
 - Tangani nilai null pada `stars_given` dan `description` jika diperlukan.
-- Tambahkan kolom `month` dari `date` untuk analisis tren waktu.
+
+**Untuk Content-Based Filtering**
+
+- Mengubah teks deskripsi `description` film menjadi matriks representasi numerik menggunakan TF-IDF Vectorizer sehingga dapat mengidentifikasi kata-kata kunci yang penting dari setiap deskripsi.
+
+**Untuk Collaborative Filtering**
+
 - Melakukan Data Loading dengan menggunakan library surprise untuk memuat Data `rating`.
 - Melakukan split Train-Test dengan membagi Dataset menjadi data latih dan data uji untuk mengevaluasi performa model.
-- Mengubah teks deskripsi `description` film menjadi matriks representasi numerik menggunakan TF-IDF Vectorizer sehingga dapat mengidentifikasi kata-kata kunci yang penting dari setiap deskripsi.
 
 ```python
 import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.preprocessing import MinMaxScaler
+from surprise import Dataset, Reader, SVD, KNNBasic
+from surprise.model_selection import train_test_split
+from surprise.accuracy import rmse
+from collections import defaultdict
+from google.colab import drive
+drive.mount('/content/drive')
 
-df = pd.read_csv("Film Harry Potter.csv")
+# Load dataset
+path = '/content/drive/MyDrive/Film Harry Potter.csv'
+df = pd.read_csv(path)
 
 # Hapus kolom tidak relevan
 df.drop(columns=['Unnamed: 0'], inplace=True)
@@ -97,17 +116,21 @@ df['likes'] = df['likes'].str.replace(',', '', regex=False).astype(int)
 # Konversi tanggal dengan format eksplisit
 df['date'] = pd.to_datetime(df['date'], format='%b%d,%Y', errors='coerce')
 
-# Tambahkan kolom bulan
-df['month'] = df['date'].dt.to_period('M')
-
-# Cek dan tangani missing value
+# Cek missing values
 print(df.isnull().sum())
 
-# Menyimpan split untuk evaluasi
-trainset_eval, testset_eval = train_test_split(data, test_size=0.2, random_state=42)
+# Drop baris dengan missing pada kolom penting
+df = df.dropna(subset=['description', 'stars_given'])
 
 # TF-IDF dari kolom description
 tfidf_matrix = vectorizer.fit_transform(df['description'])
+
+# Melakukan Data Loading menggunakan library surprise untuk memuat Data `rating`
+reader = Reader(rating_scale=(1, 5))
+data = Dataset.load_from_df(df[['name', 'book', 'stars_given']], reader)
+
+# Menyimpan split untuk evaluasi
+trainset_eval, testset_eval = train_test_split(data, test_size=0.2, random_state=42)
 ```
 
 ## Modeling
@@ -249,5 +272,9 @@ Penjelasan:
 - Dengan skala rating 1–5, nilai 0.8544 menunjukkan bahwa rata-rata prediksi model hanya meleset sekitar 0.85 poin.
 - Ini bisa terbilang cukup akurat untuk dataset kecil seperti ulasan film Harry Potter.
 - Nilai ini menandakan bahwa model SVD cukup andal dalam memahami pola rating pengguna dan bisa digunakan untuk rekomendasi yang layak.
+
+Model-model yang telah dibangun untuk proyek kali ini beserta hasil evaluasinya mampu untuk menjawab semua permasalahan yang ingin diselesaikan pada proyek ini. Model *Singular Value Decomposition (SVD)* yang dibangun melalui pendekatan Collaborative Filtering mampu memberikan rekomendasi yang akurat berdasarkan prediksi rating pengguna, serta model SVD merupakan model yang lebih akurat dan unggul dalam performa. Sedangkan Model *Cosine Similarity* yang dibangun melalui pendekatan Content-Based Filtering mampu menyarankan item berdasarkan kemiripan isi/konten review, atau tidak punya banyak data rating. Meskipun model SVD lebih akurat dan unggul dalam performa, namun model *Cosine Similarity* tetap relevan dan berguna walau cakupannya terbatas. Sehingga model SVD mampu merekomendasikan film Harry Potter seri manakah yang paling disukai berdasarkan dataset ulasan Film Harry Potter yang digunakan. Setiap pengguna mampu memberikan rekomendasi yang akurat, seperti pengguna Lora yang merekomendasikan film Harry Potter and the Goblet of Fire (dengan prediksi: 4.77), film Harry Potter and the Half-Blood Prince (dengan prediksi: 4.73), film Harry Potter and the Deathly Hallows (dengan prediksi: 4.72). Pengguna ★Jess yang merekomendasikan film Harry Potter and the Goblet of Fire (dengan prediksi: 5.00), film Harry Potter and the Prisoner of Azkaban (dengan prediksi: 4.74), film Harry Potter and the Half-Blood Prince (dengan prediksi: 4.73). dan beberapa pengguna lainnya. Dari model yang dibangun melalui pendekatan Content-Based Filtering, beberapa film Harry Potter yang direkomendasikan berdasarkan kemiripan isi/konten review seperti *Harry Potter and the Chamber of Secrets* dengan keterangan deskripsinya [(A-) 83%] (Very GoodNotes: A bit bland at times..), *Harry Potter and the Sorcerer's Stone* dengan keterangan deskripsinya [(A-) 83%] (Very GoodNotes: Despite a weak clim...), *Harry Potter and the Chamber of Secrets* dengan keterangan deskripsinya [(A-) 83%] (Very GoodNotes: A clever conjuration...) sama-sama berasal dari user Jayson dengan bintang rating yang diberikan sebesar 4.0. Hasil evaluasi yang sudah dijabarkan sebelumnya juga mendukung pernyataan bahwa model *Singular Value Decomposition (SVD)* yang dibangun melalui pendekatan Collaborative Filtering mampu memberikan rekomendasi yang akurat karena cukup unggul dalam hal performa melalui nilai RMSE yang dihasilkan sebesar 0.8544.
+
+Dengan demikian, solusi yang diajukan pada waktu awal yaitu model yang dibangun melalui pendekatan *Content-Based Filtering* dengan memanfaatkan deskripsi atau sinopsis dari setiap film yang merekomendasikan film berdasarkan kemiripan kontennya dan menggunakan teknik  TF-IDF Vectorizer dan Cosine Similarity belum memiliki dampak yang cukup besar karena hasilnya masih belum cukup akurat jika dibandingkan dengan model yang dibangun melalui *Collaborative Filtering* dengan memanfaatkan data rating yang diberikan oleh pengguna yang merekomendasikan film berdasarkan preferensi dari pengguna lain yang memiliki selera serupa, dengan menggunakan algoritma Singular Value Decomposition (SVD), serta metrik evaluasi yang digunakan adalah Root Mean Squared Error (RMSE) untuk mengukur tingkat kesalahan prediksi rating dari model yang memiliki dampak yang cukup besar karena hasil evaluasi dan hasil rekomendasinya. Sehingga semua permasalahan yang ingin diselesaikan dan tujuan yang ingin dicapai, semuanya berhasil dijawab pada proyek kali ini.
 
 **---Ini adalah bagian akhir laporan---**
